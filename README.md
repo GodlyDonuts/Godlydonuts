@@ -1,67 +1,63 @@
-<div align="center">
+<!--
+  ██ SETUP CHECKLIST — delete this comment once done ██
+  1. This file replaces README.md in your profile repo: GodlyDonuts/Godlydonuts
+  2. Commit header.svg to that same repo at  assets/header.svg  (path must match the <img> below)
+  3. Fill in the two placeholders in the link row: YOUR-LINKEDIN and YOUR-EMAIL
+  4. Optional: if you want Shohin quiet until release, delete the "Now" section — everything else stands alone
+  5. Pin these repos (Profile → Customize your pins): psi, Hacklytics-GoldenByte, Mycelia, parameter-golf
+-->
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=GodlyDonuts&fontSize=90&animation=fadeIn&fontAlignY=38&desc=Architect%20of%20the%20Digital%20Void&descAlignY=55&descAlign=50" width="100%" alt="Header" />
+<img src="assets/header.svg" width="100%" alt="Terminal session — whoami: sai, cs @ ucf, I build ML systems from first principles. cat now.txt: pretraining a 135M-param reasoning model from scratch on 8×H100. ls proof/: tensorflow-prs, handwritten-autograd, hackathon-wins, 1.0610-bpb." />
 
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=24D600&background=00000000&center=true&vCenter=true&width=435&lines=Initializing+God+Mode...;Accessing+Mainframe...;Welcome,+User." alt="Typing SVG" />
-  </a>
+<p align="center">
+  <a href="https://saicharanramineni.com"><b>portfolio</b></a> ·
+  <a href="https://www.linkedin.com/in/YOUR-LINKEDIN"><b>linkedin</b></a> ·
+  <a href="mailto:YOUR-EMAIL"><b>email</b></a>
+</p>
 
-  <br/>
+CS @ UCF (Burnett Honors College). I like the layer *under* the model — training stacks, GPU kernels, tokenizers, data pipelines — and I'd rather write these systems than read about them.
 
-  <h3>🧠 Artificial Intelligence & Machine Learning</h3>
-  <p>
-    <img src="https://img.shields.io/badge/JAX-000000?style=for-the-badge&logo=google&logoColor=white" />
-    <img src="https://img.shields.io/badge/Flax-4285F4?style=for-the-badge&logo=google&logoColor=white" />
-    <img src="https://img.shields.io/badge/Vertex%20AI-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
-    <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" />
-    <img src="https://img.shields.io/badge/Cerebras-000000?style=for-the-badge&logo=cerebras&logoColor=white" />
-    <img src="https://img.shields.io/badge/Reinforcement_Learning-FF6F00?style=for-the-badge&logo=openai&logoColor=white" />
-    <img src="https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
-    <img src="https://img.shields.io/badge/Deepgram-000000?style=for-the-badge&logoColor=white" />
-    <img src="https://img.shields.io/badge/ElevenLabs-000000?style=for-the-badge&logoColor=white" />
-  </p>
+### Now
 
-  <h3>🧬 Languages</h3>
-  <p>
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
-    <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" />
-    <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
-    <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
-    <img src="https://img.shields.io/badge/LabVIEW-FFD400?style=for-the-badge&logo=ni&logoColor=black" />
-  </p>
+Pretraining **Shohin** — a 135M-parameter language model built from scratch (custom tokenizer → custom data pipeline → 8×H100 training run), targeting state-of-the-art reasoning at the ≤150M scale. Release and writeup soon.
 
-  <h3>🛠 Frameworks & Libraries</h3>
-  <p>
-    <img src="https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
-    <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" />
-    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
-    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
-    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-    <img src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white" />
-    <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
-    <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
-  </p>
+### Selected work
 
-  <h3>🚀 Tools & Infrastructure</h3>
-  <p>
-    <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
-    <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" />
-    <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-    <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
-    <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white" />
-    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
-    <img src="https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white" />
-    <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" />
-  </p>
+**[psi](https://github.com/GodlyDonuts/psi)** — a small language model *and* the training stack it runs on, written from scratch in C++. Own reverse-mode autograd (gradient-checked against finite differences to ~1e-12), own GPU kernels, no PyTorch or any other ML framework anywhere in the stack.
 
-  <br/>
+**[Crisis Topography](https://github.com/GodlyDonuts/Hacklytics-GoldenByte)** — voice-commanded 3D geospatial crisis-intelligence platform: agentic orchestration over Databricks analytics and a self-hosted Actian vector store (18k+ embeddings, sub-100ms retrieval). 🥉 **3rd overall @ Hacklytics 2026** (Georgia Tech, 1,200+ builders).
 
-  <br/>
+**[Mycelia](https://github.com/GodlyDonuts/Mycelia)** — distributed compute marketplace: Next.js, Aurora DSQL, double-entry escrow ledger, MCP-native agent integration.
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%" alt="Footer" />
+### Open source
 
-</div>
+Merged PRs in **TensorFlow** core — [a segfault guard in `TensorListSetItem`](https://github.com/tensorflow/tensorflow/pull/121708) and [a float32 `erfinv` precision fix near ±1](https://github.com/tensorflow/tensorflow/pull/121644) — plus [Unsloth](https://github.com/unslothai/unsloth/pulls?q=is%3Apr+author%3AGodlyDonuts+is%3Amerged), [LiteLLM](https://github.com/BerriAI/litellm/pulls?q=is%3Apr+author%3AGodlyDonuts+is%3Amerged), [torchtitan](https://github.com/pytorch/torchtitan/pulls?q=is%3Apr+author%3AGodlyDonuts+is%3Amerged), and [wit-bindgen](https://github.com/bytecodealliance/wit-bindgen/pulls?q=is%3Apr+author%3AGodlyDonuts+is%3Amerged).
+
+**[→ every merged PR, live from GitHub search](https://github.com/search?q=is%3Apr+is%3Amerged+author%3AGodlyDonuts&type=pullrequests)** — no curation, just the query.
+
+### Competitions
+
+| | |
+|---|---|
+| **OpenAI Parameter Golf** | [1.0610 val bits-per-byte](https://github.com/GodlyDonuts/parameter-golf) · briefly #1 on the live leaderboard |
+| **Amazon Nova AI Hackathon** | Best Agentic AI · 13,000+ participants |
+| **Hacklytics 2026** (Georgia Tech) | 3rd overall · 1,200+ participants |
+| **NVIDIA Nemotron Challenge** (Kaggle) | z3-based cipher solvers + templated search for bit-manipulation puzzles |
+
+### Stats
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=GodlyDonuts&show_icons=true&hide_border=true&theme=github_dark&bg_color=00000000">
+    <img height="170" src="https://github-readme-stats.vercel.app/api?username=GodlyDonuts&show_icons=true&hide_border=true&bg_color=00000000" alt="GitHub stats">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=GodlyDonuts&layout=compact&hide_border=true&theme=github_dark&bg_color=00000000">
+    <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=GodlyDonuts&layout=compact&hide_border=true&bg_color=00000000" alt="Top languages">
+  </picture>
+</p>
+
+<p align="center">
+  <b>Open to ML-infra / systems internships.</b><br>
+  <sub>Everything above links to a receipt — claims are cheap, merged PRs aren't.</sub>
+</p>
