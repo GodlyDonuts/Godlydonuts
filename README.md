@@ -55,22 +55,4 @@ Merged PRs in **TensorFlow** core — [a segfault guard in `TensorListSetItem`](
 | **Amazon Nova AI Hackathon** | 🏆 Best Agentic AI · 13,000+ participants · [sai](https://github.com/GodlyDonuts/sai) |
 | **The AI Championship** | 🏆 Winner · [Project Sentinel](https://github.com/GodlyDonuts/project-sentinel) |
 | **Hacklytics 2026** (Georgia Tech) | 🥉 3rd overall · 1,200+ participants · [Crisis Topography](https://github.com/GodlyDonuts/Hacklytics-GoldenByte) |
-| **NVIDIA Nemotron Challenge** (Kaggle) | z3-based cipher solvers + templated search for bit-manipulation puzzles |
 
-### Stats
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=GodlyDonuts&show_icons=true&hide_border=true&theme=github_dark&bg_color=00000000">
-    <img height="170" src="https://github-readme-stats.vercel.app/api?username=GodlyDonuts&show_icons=true&hide_border=true&bg_color=00000000" alt="GitHub stats">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=GodlyDonuts&layout=compact&hide_border=true&theme=github_dark&bg_color=00000000">
-    <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=GodlyDonuts&layout=compact&hide_border=true&bg_color=00000000" alt="Top languages">
-  </picture>
-</p>
-
-<p align="center">
-  <b>Open to ML-infra / systems internships.</b><br>
-  <sub>Everything above links to a receipt — claims are cheap, merged PRs aren't.</sub>
-</p>
