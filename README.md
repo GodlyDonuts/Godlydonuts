@@ -1,20 +1,9 @@
-<!--
-  ██ SETUP CHECKLIST — delete this comment once done ██
-  1. This file replaces README.md in your profile repo: GodlyDonuts/Godlydonuts
-  2. Commit header.svg to that same repo at  assets/header.svg  (path must match the <img> below)
-  3. Fill in the two placeholders in the link row: YOUR-LINKEDIN and YOUR-EMAIL
-  4. Optional: add the organizer / participant count to "The AI Championship" row if you have it —
-     I couldn't verify those details, so I left the claim exactly as you stated it.
-  5. Optional: if you want Shohin quiet until release, delete the "Now" section — everything else stands alone
-  6. Pin these repos (Profile → Customize your pins): psi, sai, project-sentinel, Hacklytics-GoldenByte, vectorized-2048
--->
-
-<img src="assets/header.svg" width="100%" alt="Terminal session — whoami: sai, cs @ ucf, I build ML systems from first principles. cat now.txt: pretraining a 135M-param reasoning model from scratch on 8×H100. ls proof/: tensorflow-prs, handwritten-autograd, 883-gflops-matmul, hackathon-wins." />
+<img src="assets/header.svg" width="100%" alt="Terminal session — whoami: sai, cs @ ucf, I build ML systems from first principles. cat now.txt: testing model-owned temporal revision across dense and sparse language models. ls proof/: tensorflow-prs, handwritten-autograd, 883-gflops-matmul, hackathon-wins." />
 
 <p align="center">
   <a href="https://saicharanramineni.com"><b>portfolio</b></a> ·
-  <a href="https://www.linkedin.com/in/YOUR-LINKEDIN"><b>linkedin</b></a> ·
-  <a href="mailto:YOUR-EMAIL"><b>email</b></a>
+  <a href="https://www.linkedin.com/in/saicharanramineni/"><b>linkedin</b></a> ·
+  <a href="mailto:csramineni@gmail.com"><b>email</b></a>
 </p>
 
 CS @ UCF (Burnett Honors College), undergrad research fine-tuning LLMs. I like the layer *under* the model — training stacks, GPU kernels, tokenizers, data pipelines — and I'd rather write these systems than read about them.
@@ -23,7 +12,7 @@ CS @ UCF (Burnett Honors College), undergrad research fine-tuning LLMs. I like t
 
 ### Now
 
-Pretraining **Shohin** — a 135M-parameter language model built from scratch (custom tokenizer → custom data pipeline → 8×H100 training run), targeting state-of-the-art reasoning at the ≤150M scale. Release and writeup soon.
+Building **Shohin**, an open research program for model-owned temporal revision and learned computation across pretrained language models. Trained revision produces source-disjoint gains from Qwen3.5-0.8B through 9B and transfers to SmolLM3; current work studies capability preservation and sparse-MoE transfer under frozen controls.
 
 Also on the bench: **[gods-eye](https://github.com/GodlyDonuts/gods-eye)** — real-time monocular 3D reconstruction in Rust: one RGB camera in, a live adaptive-LOD triangle mesh out. Design stage.
 
@@ -55,4 +44,3 @@ Merged PRs in **TensorFlow** core — [a segfault guard in `TensorListSetItem`](
 | **Amazon Nova AI Hackathon** | 🏆 Best Agentic AI · 13,000+ participants · [sai](https://github.com/GodlyDonuts/sai) |
 | **The AI Championship** | 🏆 Winner · [Project Sentinel](https://github.com/GodlyDonuts/project-sentinel) |
 | **Hacklytics 2026** (Georgia Tech) | 🥉 3rd overall · 1,200+ participants · [Crisis Topography](https://github.com/GodlyDonuts/Hacklytics-GoldenByte) |
-
