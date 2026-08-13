@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://saicharanramineni.com"><b>portfolio</b></a> ·
-  <a href="https://www.linkedin.com/in/saicharanramineni/"><b>linkedin</b></a> ·
+  <a href="https://www.linkedin.com/in/saicharan-ramineni/"><b>linkedin</b></a> ·
   <a href="mailto:csramineni@gmail.com"><b>email</b></a>
 </p>
 
