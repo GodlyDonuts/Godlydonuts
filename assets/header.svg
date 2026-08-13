@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 312" role="img" aria-label="Terminal session — whoami: sai, cs @ ucf, I build ML systems from first principles. cat now.txt: pretraining a 135M-param reasoning model from scratch on 8×H100. ls proof/: tensorflow-prs, handwritten-autograd, 883-gflops-matmul, hackathon-wins.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 312" role="img" aria-label="Terminal session — whoami: sai, cs @ ucf, I build ML systems from first principles. cat now.txt: testing model-owned temporal revision across dense and sparse language models. ls proof/: tensorflow-prs, handwritten-autograd, 883-gflops-matmul, hackathon-wins.">
   <title>sai — terminal intro</title>
 
   <defs>
@@ -44,7 +44,7 @@
     <text x="56" y="148" fill="#e6edf3" clip-path="url(#t2)">cat now.txt</text>
     <g opacity="0">
       <animate attributeName="opacity" to="1" begin="3.55s" dur="0.3s" fill="freeze"/>
-      <text x="56" y="178" fill="#c9d1d9">pretraining a 135M-param reasoning model from scratch · 8×H100</text>
+      <text x="56" y="178" fill="#c9d1d9">testing model-owned temporal revision across dense and sparse language models</text>
     </g>
 
     <!-- $ ls proof/ -->
