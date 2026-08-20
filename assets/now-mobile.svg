@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 850" role="img" aria-labelledby="title desc">
   <title id="title">Right now</title>
-  <desc id="desc">Right now. Last public work in shohin-ettr: Record corrected GPT-OSS mechanics launch. Current rabbit hole: whether learned revision survives sparse routing. Current bet: algorithmic efficiency will keep the AI race closer than the compute gap suggests.</desc>
+  <desc id="desc">Right now. Last public work in keryx: Reuse resolved links between ATS polling windows. Current rabbit hole: whether learned revision survives sparse routing. Current bet: algorithmic efficiency will keep the AI race closer than the compute gap suggests.</desc>
   <defs>
     <style>
 
@@ -32,48 +32,41 @@
       @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
     </style>
     <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
-      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17" />
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10" />
     </pattern>
   </defs>
-
-  <rect class="bg" width="430" height="850"/>
-  <rect width="430" height="850" fill="url(#grain)"/>
+  <rect class="bg" width="430" height="850" />
+  <rect width="430" height="850" fill="url(#grain)" />
   <text x="24" y="31" class="mono accent" font-size="9.5" letter-spacing="1.9">RIGHT NOW / FROM THE PUBLIC REPOS</text>
-  <text x="406" y="31" text-anchor="end" class="mono quiet" font-size="8" letter-spacing="1.05">2026.08.20</text>
-  <line x1="24" y1="48" x2="406" y2="48" class="line"/>
-
+  <text x="406" y="31" text-anchor="end" class="mono quiet" font-size="8" letter-spacing="1.05">2026.08.15</text>
+  <line x1="24" y1="48" x2="406" y2="48" class="line" />
   <text x="20" y="172" class="serif fg" font-size="116" font-weight="700" letter-spacing="-8">NOW.</text>
   <text x="24" y="204" class="mono muted" font-size="8.5" letter-spacing="1.1">THIS CHANGES WHEN I DO.</text>
-
-  <line x1="24" y1="236" x2="406" y2="236" class="line"/>
+  <line x1="24" y1="236" x2="406" y2="236" class="line" />
   <text x="24" y="268" class="mono quiet" font-size="8.5" letter-spacing="1.5">LAST PUBLIC CHANGE</text>
-  <text x="24" y="307" class="fg" font-size="26" font-weight="700">shohin-ettr</text>
+  <text x="24" y="307" class="fg" font-size="26" font-weight="700">keryx</text>
   <text x="24" y="340" class="muted" font-size="16.5" font-weight="500">
-    <tspan x="24" dy="0">Record corrected GPT-OSS mechanics</tspan>
-<tspan x="24" dy="23">launch</tspan>
+    <tspan x="24" dy="0">Reuse resolved links between ATS polling</tspan>
+    <tspan x="24" dy="23">windows</tspan>
   </text>
-
-  <line x1="24" y1="422" x2="406" y2="422" class="line"/>
+  <line x1="24" y1="422" x2="406" y2="422" class="line" />
   <text x="24" y="454" class="mono quiet" font-size="8.5" letter-spacing="1.5">CURRENT RABBIT HOLE</text>
   <text x="24" y="488" class="fg" font-size="19" font-weight="650">
     <tspan x="24" dy="0">whether learned revision</tspan>
-<tspan x="24" dy="26">survives sparse routing</tspan>
+    <tspan x="24" dy="26">survives sparse routing</tspan>
   </text>
-
-  <line x1="24" y1="585" x2="406" y2="585" class="line"/>
+  <line x1="24" y1="585" x2="406" y2="585" class="line" />
   <text x="24" y="617" class="mono quiet" font-size="8.5" letter-spacing="1.5">CURRENT BET</text>
   <text x="24" y="651" class="fg" font-size="18" font-weight="620">
     <tspan x="24" dy="0">algorithmic efficiency will</tspan>
-<tspan x="24" dy="25">keep the AI race closer than</tspan>
-<tspan x="24" dy="25">the compute gap suggests</tspan>
+    <tspan x="24" dy="25">keep the AI race closer than</tspan>
+    <tspan x="24" dy="25">the compute gap suggests</tspan>
   </text>
-
-  <line x1="24" y1="748" x2="406" y2="748" class="line"/>
+  <line x1="24" y1="748" x2="406" y2="748" class="line" />
   <text x="24" y="780" class="mono quiet" font-size="8.5" letter-spacing="1.35">CHANGED MY MIND ABOUT</text>
   <text x="24" y="814" class="fg" font-size="17.5" font-weight="620">
     <tspan x="24" dy="0">open source being destined to</tspan>
-<tspan x="24" dy="24">stay one generation behind</tspan>
+    <tspan x="24" dy="24">stay one generation behind</tspan>
   </text>
-
 </svg>
