@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 600" role="img" aria-labelledby="title desc">
+  <title id="title">Why I build</title>
+  <desc id="desc">A personal note about following questions across disciplines, distrusting clean results, and caring about taste.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #080808; }
+      .paper { fill: #11110f; }
+      .fg { fill: #f4f1e8; }
+      .muted { fill: #9a978f; }
+      .quiet { fill: #5f5d58; }
+      .line { stroke: #2c2b28; }
+      .accent { fill: #d8ff43; }
+      .accent-stroke { stroke: #d8ff43; }
+      .day-only { display: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f2eee5; }
+        .paper { fill: #ebe5da; }
+        .fg { fill: #111111; }
+        .muted { fill: #6e6a62; }
+        .quiet { fill: #9b958a; }
+        .line { stroke: #c9c1b3; }
+        .accent { fill: #1b6b4f; }
+        .accent-stroke { stroke: #1b6b4f; }
+        .night-only { display: none; }
+        .day-only { display: inline; }
+      }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="846" height="600"/>
+  <rect width="846" height="600" fill="url(#grain)"/>
+  <text x="28" y="50" class="mono accent" font-size="9" letter-spacing="2">WHY I BUILD / NOT A CAREER STATEMENT</text>
+  <line x1="28" y1="67" x2="818" y2="67" class="line"/>
+
+  <text x="28" y="135" class="serif fg" font-size="48" font-weight="700">I don't really have a lane.</text>
+  <text x="31" y="171" class="muted" font-size="19">The problem decides how low I have to go.</text>
+
+  <text x="31" y="235" class="mono quiet" font-size="12" text-decoration="line-through">choose a discipline and stay there</text>
+  <text x="31" y="270" class="mono accent" font-size="16" font-weight="700">follow the question until the abstraction stops helping</text>
+
+  <line x1="28" y1="310" x2="818" y2="310" class="line"/>
+  <text x="28" y="357" class="fg" font-size="24" font-weight="650">I will learn a new field before I make the idea smaller.</text>
+  <text x="28" y="409" class="fg" font-size="23" font-weight="650">When a result looks too clean, I assume I missed a control.</text>
+  <text x="28" y="443" class="muted" font-size="17">I have deleted weeks of work because one control failed.</text>
+  <text x="28" y="505" class="fg" font-size="24" font-weight="650">I care about taste.</text>
+  <text x="28" y="541" class="muted" font-size="17">Working software can still feel dead.</text>
+  <text x="818" y="576" text-anchor="end" class="mono quiet" font-size="8.5" letter-spacing="1.15">BUILD IT / BREAK IT / UNDERSTAND WHY / KEEP THE PART THAT SURVIVES</text>
+
+</svg>

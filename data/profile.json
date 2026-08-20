@@ -1,8 +1,7 @@
 {
-  "edition": 1,
   "rabbit_hole": "whether learned revision survives sparse routing",
   "current_bet": "algorithmic efficiency will keep the AI race closer than the compute gap suggests",
-  "changed_my_mind": "open source staying one generation behind by default",
+  "changed_my_mind": "open source being destined to stay one generation behind",
   "fallback": {
     "repository": "shohin-ettr",
     "message": "Record corrected GPT-OSS mechanics launch",

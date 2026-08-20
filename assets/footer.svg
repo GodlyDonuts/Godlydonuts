@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 180" role="img" aria-labelledby="title desc">
+  <title id="title">End of profile introduction</title>
+  <desc id="desc">The code is below. This part is me.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #080808; }
+      .paper { fill: #11110f; }
+      .fg { fill: #f4f1e8; }
+      .muted { fill: #9a978f; }
+      .quiet { fill: #5f5d58; }
+      .line { stroke: #2c2b28; }
+      .accent { fill: #d8ff43; }
+      .accent-stroke { stroke: #d8ff43; }
+      .day-only { display: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f2eee5; }
+        .paper { fill: #ebe5da; }
+        .fg { fill: #111111; }
+        .muted { fill: #6e6a62; }
+        .quiet { fill: #9b958a; }
+        .line { stroke: #c9c1b3; }
+        .accent { fill: #1b6b4f; }
+        .accent-stroke { stroke: #1b6b4f; }
+        .night-only { display: none; }
+        .day-only { display: inline; }
+      }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="846" height="180"/>
+  <rect width="846" height="180" fill="url(#grain)"/>
+  <line x1="28" y1="29" x2="818" y2="29" class="line"/>
+  <text x="28" y="94" class="serif fg" font-size="42" font-weight="700">The code is below.</text>
+  <text x="28" y="139" class="serif muted" font-size="31" font-style="italic">This part is me.</text>
+  <text x="818" y="160" text-anchor="end" class="mono accent" font-size="8.5" letter-spacing="1.2">SAI / QUESTIONS → SYSTEMS → BETTER QUESTIONS</text>
+
+</svg>

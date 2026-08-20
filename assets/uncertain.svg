@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 505" role="img" aria-labelledby="title desc">
+  <title id="title">Things I am not certain about</title>
+  <desc id="desc">Open questions about intelligence, interfaces, ambition, the AI frontier, and late-night projects.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #080808; }
+      .paper { fill: #11110f; }
+      .fg { fill: #f4f1e8; }
+      .muted { fill: #9a978f; }
+      .quiet { fill: #5f5d58; }
+      .line { stroke: #2c2b28; }
+      .accent { fill: #d8ff43; }
+      .accent-stroke { stroke: #d8ff43; }
+      .day-only { display: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f2eee5; }
+        .paper { fill: #ebe5da; }
+        .fg { fill: #111111; }
+        .muted { fill: #6e6a62; }
+        .quiet { fill: #9b958a; }
+        .line { stroke: #c9c1b3; }
+        .accent { fill: #1b6b4f; }
+        .accent-stroke { stroke: #1b6b4f; }
+        .night-only { display: none; }
+        .day-only { display: inline; }
+      }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="846" height="505"/>
+  <rect width="846" height="505" fill="url(#grain)"/>
+  <text x="28" y="50" class="mono accent" font-size="9" letter-spacing="2">THINGS I DON'T KNOW YET / KEPT PUBLIC ON PURPOSE</text>
+  <line x1="28" y1="67" x2="818" y2="67" class="line"/>
+  <text x="28" y="112" class="serif fg" font-size="28" font-weight="700">I am probably wrong about something important.</text>
+  <text x="31" y="160" class="mono accent" font-size="10" letter-spacing="1.3">01</text><text x="88" y="160" class="fg" font-size="20" font-weight="620"><tspan x="88" dy="0">Does intelligence need more scale, or better ways to spend time?</tspan></text><line x1="88" y1="194" x2="818" y2="194" class="line"/><text x="31" y="216" class="mono accent" font-size="10" letter-spacing="1.3">02</text><text x="88" y="216" class="fg" font-size="20" font-weight="620"><tspan x="88" dy="0">Is the best interface the one you eventually stop noticing?</tspan></text><line x1="88" y1="250" x2="818" y2="250" class="line"/><text x="31" y="272" class="mono accent" font-size="10" letter-spacing="1.3">03</text><text x="88" y="272" class="fg" font-size="20" font-weight="620"><tspan x="88" dy="0">How much of ambition is talent, and how much is refusing to quit?</tspan></text><line x1="88" y1="306" x2="818" y2="306" class="line"/><text x="31" y="328" class="mono accent" font-size="10" letter-spacing="1.3">04</text><text x="88" y="328" class="fg" font-size="20" font-weight="620"><tspan x="88" dy="0">How close is the public frontier to the private one?</tspan></text><line x1="88" y1="362" x2="818" y2="362" class="line"/><text x="31" y="384" class="mono accent" font-size="10" letter-spacing="1.3">05</text><text x="88" y="384" class="fg" font-size="20" font-weight="620"><tspan x="88" dy="0">Will I ever stop starting projects at 2 a.m.?</tspan></text><line x1="88" y1="418" x2="818" y2="418" class="line"/>
+  <text x="818" y="482" text-anchor="end" class="mono quiet" font-size="8.5" letter-spacing="1.15">THE LAST ONE IS NOT REALLY OPEN.</text>
+
+</svg>

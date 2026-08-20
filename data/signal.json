@@ -1,9 +1,0 @@
-{
-  "question": "What changes when a model learns not only to answer, but to reconsider?",
-  "counterweight": "Attempt the unreasonable. Measure it hard enough to survive.",
-  "fallback": {
-    "repository": "shohin-ettr",
-    "message": "Record corrected GPT-OSS mechanics launch",
-    "observed_at": "2026-08-20T01:18:44Z"
-  }
-}

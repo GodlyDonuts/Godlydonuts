@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 94" role="img" aria-labelledby="title desc">
+  <title id="title">EMAIL</title>
+  <desc id="desc">Link: EMAIL. send a strange question</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #080808; }
+      .paper { fill: #11110f; }
+      .fg { fill: #f4f1e8; }
+      .muted { fill: #9a978f; }
+      .quiet { fill: #5f5d58; }
+      .line { stroke: #2c2b28; }
+      .accent { fill: #d8ff43; }
+      .accent-stroke { stroke: #d8ff43; }
+      .day-only { display: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f2eee5; }
+        .paper { fill: #ebe5da; }
+        .fg { fill: #111111; }
+        .muted { fill: #6e6a62; }
+        .quiet { fill: #9b958a; }
+        .line { stroke: #c9c1b3; }
+        .accent { fill: #1b6b4f; }
+        .accent-stroke { stroke: #1b6b4f; }
+        .night-only { display: none; }
+        .day-only { display: inline; }
+      }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="414" height="94"/>
+  <rect x="0.5" y="0.5" width="413" height="93" fill="none" class="line"/>
+  <text x="18" y="38" class="fg" font-size="17" font-weight="700">EMAIL</text>
+  <text x="18" y="67" class="mono muted" font-size="8.5" letter-spacing="1.15">SEND A STRANGE QUESTION</text>
+  <g transform="translate(374 24)" fill="none" class="accent-stroke" stroke-width="1.7" stroke-linecap="square">
+    <path d="M0 13L13 0M3 0h10v10"/>
+  </g>
+
+</svg>

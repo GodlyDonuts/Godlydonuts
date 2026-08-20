@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 790" role="img" aria-labelledby="title desc">
+  <title id="title">Offscreen</title>
+  <desc id="desc">Outside the terminal: lifting, spaceflight, AI competition, predictions, names, arguments, and caring about aura.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #080808; }
+      .paper { fill: #11110f; }
+      .fg { fill: #f4f1e8; }
+      .muted { fill: #9a978f; }
+      .quiet { fill: #5f5d58; }
+      .line { stroke: #2c2b28; }
+      .accent { fill: #d8ff43; }
+      .accent-stroke { stroke: #d8ff43; }
+      .day-only { display: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #f2eee5; }
+        .paper { fill: #ebe5da; }
+        .fg { fill: #111111; }
+        .muted { fill: #6e6a62; }
+        .quiet { fill: #9b958a; }
+        .line { stroke: #c9c1b3; }
+        .accent { fill: #1b6b4f; }
+        .accent-stroke { stroke: #1b6b4f; }
+        .night-only { display: none; }
+        .day-only { display: inline; }
+      }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="430" height="790"/>
+  <rect width="430" height="790" fill="url(#grain)"/>
+  <text x="22" y="35" class="mono accent" font-size="9" letter-spacing="1.7">OFFSCREEN / A NON-EXHAUSTIVE LIST</text>
+  <line x1="22" y1="52" x2="408" y2="52" class="line"/>
+
+  <text x="22" y="113" class="serif fg" font-size="34" font-weight="700">I have opinions</text>
+  <text x="22" y="151" class="serif fg" font-size="34" font-weight="700">about rockets that</text>
+  <text x="22" y="189" class="serif fg" font-size="34" font-weight="700">nobody asked for.</text>
+
+  <g class="mono" font-size="12" font-weight="650" letter-spacing="1.15">
+    <text x="26" y="271" class="accent" transform="rotate(-2 26 271)">LIFTING</text>
+    <text x="174" y="250" class="fg" transform="rotate(1.5 174 250)">SPACEFLIGHT</text>
+    <text x="46" y="329" class="muted" transform="rotate(1 46 329)">US ↔ CHINA AI</text>
+    <text x="231" y="316" class="fg" transform="rotate(-1.5 231 316)">COMPANY STRATEGY</text>
+    <text x="31" y="389" class="muted" transform="rotate(-1.2 31 389)">NAMES</text>
+    <text x="142" y="409" class="fg" transform="rotate(1.7 142 409)">PREDICTIONS</text>
+    <text x="304" y="374" class="accent" transform="rotate(-2 304 374)">AURA</text>
+    <text x="247" y="444" class="muted" transform="rotate(1 247 444)">ARGUMENTS</text>
+  </g>
+
+  <line x1="22" y1="487" x2="408" y2="487" class="line"/>
+  <text x="22" y="538" class="fg" font-size="19.5" font-weight="650">I can turn almost any forecast</text>
+  <text x="22" y="564" class="fg" font-size="19.5" font-weight="650">into a debate.</text>
+
+  <text x="22" y="628" class="fg" font-size="19.5" font-weight="650">I care about names more</text>
+  <text x="22" y="654" class="fg" font-size="19.5" font-weight="650">than is rational.</text>
+
+  <text x="22" y="719" class="fg" font-size="20" font-weight="650">I care about aura.</text>
+  <text x="190" y="719" class="muted" font-size="15">I know.</text>
+  <text x="408" y="766" text-anchor="end" class="mono quiet" font-size="8" letter-spacing="1">THIS IS NOT A SKILLS SECTION.</text>
+
+</svg>

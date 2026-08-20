@@ -1,0 +1,64 @@
+name: Refresh profile state
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/profile.json"
+      - "scripts/render_profile.py"
+      - ".github/workflows/update-profile.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-state
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out profile source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 1
+
+      - name: Render the page
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/render_profile.py --user GodlyDonuts
+
+      - name: Validate every generated SVG
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree
+
+          assets = sorted(Path("assets").glob("*.svg"))
+          if not assets:
+              raise SystemExit("no generated SVG assets found")
+          for asset in assets:
+              ElementTree.parse(asset)
+          print(f"validated {len(assets)} SVG assets")
+          PY
+          git diff --check
+
+      - name: Publish only when the rendered page changed
+        run: |
+          if git diff --quiet -- assets; then
+            echo "The visible profile is unchanged."
+            exit 0
+          fi
+
+          git config user.name "sai-profile[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets
+          git commit -m "chore: refresh profile state"
+          git push origin HEAD:main

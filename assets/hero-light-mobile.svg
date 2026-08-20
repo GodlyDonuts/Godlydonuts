@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 600" role="img" aria-labelledby="title desc">
+  <title id="title">Sai — day copy</title>
+  <desc id="desc">Sai&#x27;s profile cover. Some ideas look stupid in daylight. I still need to know.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #f2eee5; }
+      .paper { fill: #ebe5da; }
+      .fg { fill: #111111; }
+      .muted { fill: #6e6a62; }
+      .quiet { fill: #9b958a; }
+      .line { stroke: #c9c1b3; }
+      .accent { fill: #1b6b4f; }
+      .accent-stroke { stroke: #1b6b4f; }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="430" height="600"/>
+  <rect width="430" height="600" fill="url(#grain)"/>
+  <line x1="24" y1="42" x2="406" y2="42" class="line"/>
+  <text x="24" y="29" class="mono accent" font-size="10" letter-spacing="2.1">SAI / DAY COPY</text>
+  <text x="406" y="29" text-anchor="end" class="mono quiet" font-size="8" letter-spacing="1.2">UCF / FLORIDA</text>
+  <text x="20" y="214" class="serif fg" font-size="164" font-weight="700" letter-spacing="-12">SAI</text>
+  <text x="333" y="188" class="serif accent" font-size="116" font-style="italic" opacity="0.95">?</text>
+  <text x="24" y="290" class="serif fg" font-size="31" font-weight="700">
+    <tspan x="24" dy="0">Some ideas look stupid</tspan>
+<tspan x="24" dy="38">in daylight.</tspan>
+  </text>
+  <text x="24" y="386" class="fg" font-size="20" font-weight="520">
+    <tspan x="24" dy="0">I still need to know.</tspan>
+  </text>
+  <line x1="24" y1="470" x2="406" y2="470" class="line"/>
+  <text x="24" y="502" class="mono muted" font-size="10" letter-spacing="1.3">THE NIGHT VERSION IS LESS POLITE.</text>
+  <text x="24" y="558" class="mono quiet" font-size="8.5" letter-spacing="1.05">THERE IS ANOTHER VERSION OF THIS PAGE AFTER DARK</text>
+  <rect class="motion accent" x="24" y="582" width="52" height="2">
+    <animate attributeName="x" values="24;354;24" dur="10s" repeatCount="indefinite"/>
+  </rect>
+
+</svg>

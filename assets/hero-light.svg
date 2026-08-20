@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 470" role="img" aria-labelledby="title desc">
+  <title id="title">Sai — day copy</title>
+  <desc id="desc">Sai&#x27;s profile cover. Some ideas look stupid in daylight. I still need to know.</desc>
+  <defs>
+    <style>
+
+      .bg { fill: #f2eee5; }
+      .paper { fill: #ebe5da; }
+      .fg { fill: #111111; }
+      .muted { fill: #6e6a62; }
+      .quiet { fill: #9b958a; }
+      .line { stroke: #c9c1b3; }
+      .accent { fill: #1b6b4f; }
+      .accent-stroke { stroke: #1b6b4f; }
+
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
+      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="846" height="470"/>
+  <rect width="846" height="470" fill="url(#grain)"/>
+  <line x1="38" y1="48" x2="808" y2="48" class="line"/>
+  <text x="38" y="31" class="mono accent" font-size="11" letter-spacing="2.4">SAI / DAY COPY</text>
+  <text x="808" y="31" text-anchor="end" class="mono quiet" font-size="9" letter-spacing="1.4">UCF / FLORIDA / USUALLY AWAKE TOO LATE</text>
+  <text x="24" y="272" class="serif fg" font-size="230" font-weight="700" letter-spacing="-18">SAI</text>
+  <text x="332" y="229" class="serif accent" font-size="168" font-style="italic">?</text>
+  <line x1="451" y1="80" x2="451" y2="390" class="line"/>
+  <text x="488" y="124" class="serif fg" font-size="38" font-weight="700">
+    <tspan x="488" dy="0">Some ideas look</tspan>
+<tspan x="488" dy="44">stupid in</tspan>
+<tspan x="488" dy="44">daylight.</tspan>
+  </text>
+  <text x="488" y="286" class="fg" font-size="22" font-weight="520">
+    <tspan x="488" dy="0">I still need to know.</tspan>
+  </text>
+  <text x="488" y="367" class="mono muted" font-size="9" letter-spacing="1.25">THE NIGHT VERSION IS LESS POLITE.</text>
+  <text x="38" y="438" class="mono quiet" font-size="9" letter-spacing="1.15">THERE IS ANOTHER VERSION OF THIS PAGE AFTER DARK</text>
+  <rect class="motion accent" x="38" y="454" width="72" height="2">
+    <animate attributeName="x" values="38;736;38" dur="12s" repeatCount="indefinite"/>
+  </rect>
+
+</svg>

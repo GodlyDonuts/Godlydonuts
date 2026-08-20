@@ -1,0 +1,40 @@
+name: Start an argument
+description: Bring a question, prediction, strange idea, or collaboration worth thinking about.
+title: "[argument] "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are we arguing about?
+      options:
+        - A prediction
+        - A question worth chasing
+        - A strange idea
+        - A collaboration
+    validations:
+      required: true
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: Make the claim
+      description: Say the interesting part first.
+      placeholder: I think...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should I care?
+      description: What changes if this is true?
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What would change your mind?
+      description: Confidence is more useful when it has a failure condition.
+    validations:
+      required: true
