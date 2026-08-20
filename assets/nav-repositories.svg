@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-label="REPOSITORIES">
+  <style>
+    .bg { fill: #eee6d7; } .ink { fill: #11100e; } .muted { fill: #675f54; }
+    @media (prefers-color-scheme: dark) { .bg { fill: #0b0a09; } .ink { fill: #eee7dc; } .muted { fill: #9f9688; } }
+    text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+  </style>
+  <rect class="bg" x="1" y="1" width="418" height="94" stroke="#0067d9" stroke-width="2"/>
+  <text x="19" y="28" class="mono muted" font-size="12" font-weight="700">02</text>
+  <text x="19" y="68" class="ink" font-size="22" font-weight="750">REPOSITORIES</text>
+  <path d="M365 58h28m-10-10 10 10-10 10" fill="none" stroke="#0067d9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

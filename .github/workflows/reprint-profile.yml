@@ -1,0 +1,63 @@
+name: Reprint profile
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/profile.json"
+      - "scripts/render_profile.py"
+      - "tests/test_render.py"
+      - ".github/workflows/reprint-profile.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reprint-profile
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out the source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 1
+
+      - name: Test the four authored copies
+        run: python3 -m unittest discover -s tests -p "test_*.py"
+
+      - name: Reprint from public GitHub state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/render_profile.py --user GodlyDonuts
+
+      - name: Validate the artwork
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree
+          for path in Path("assets").glob("*.svg"):
+              ElementTree.parse(path)
+          PY
+          git diff --check
+
+      - name: Publish only when the visible page changed
+        run: |
+          if git diff --quiet -- assets/; then
+            echo "The profile is already current."
+            exit 0
+          fi
+
+          git config user.name "sai-profile[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/profile-light.svg assets/profile-dark.svg assets/profile-light-mobile.svg assets/profile-dark-mobile.svg assets/nav-portfolio.svg assets/nav-repositories.svg assets/nav-email.svg assets/nav-idea.svg
+          git commit -m "chore: reprint profile"
+          git push origin HEAD:main
