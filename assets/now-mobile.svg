@@ -1,72 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 850" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900" role="img" aria-labelledby="title desc">
   <title id="title">Right now</title>
-  <desc id="desc">Right now. Last public work in shohin-ettr: Record corrected GPT-OSS mechanics launch. Current rabbit hole: whether learned revision survives sparse routing. Current bet: algorithmic efficiency will keep the AI race closer than the compute gap suggests.</desc>
+  <desc id="desc">Sai's latest public change is in shohin-ettr: Record corrected GPT-OSS mechanics launch. He is thinking about whether a model can learn to revise itself without brute-force scale.</desc>
   <defs>
     <style>
-
-      .bg { fill: #080808; }
-      .paper { fill: #11110f; }
-      .fg { fill: #f4f1e8; }
-      .muted { fill: #9a978f; }
-      .quiet { fill: #5f5d58; }
-      .line { stroke: #2c2b28; }
-      .accent { fill: #d8ff43; }
-      .accent-stroke { stroke: #d8ff43; }
-      .day-only { display: none; }
+      .bg { fill: #090B16; }
+      .surface { fill: #12172A; }
+      .fg { fill: #F5F0E8; }
+      .fg-stroke { stroke: #F5F0E8; }
+      .muted { fill: #A9A4B3; }
+      .muted-stroke { stroke: #A9A4B3; }
+      .line { stroke: #2B324D; }
+      .blue { fill: #4D64FF; }
+      .orange { fill: #FF6845; }
+      .on-blue { fill: #FBF7EF; }
+      .on-blue-stroke { stroke: #FBF7EF; }
+      .on-orange { fill: #15131B; }
+      .on-orange-stroke { stroke: #15131B; }
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; stroke: none; }
       @media (prefers-color-scheme: light) {
-        .bg { fill: #f2eee5; }
-        .paper { fill: #ebe5da; }
-        .fg { fill: #111111; }
-        .muted { fill: #6e6a62; }
-        .quiet { fill: #9b958a; }
-        .line { stroke: #c9c1b3; }
-        .accent { fill: #1b6b4f; }
-        .accent-stroke { stroke: #1b6b4f; }
-        .night-only { display: none; }
-        .day-only { display: inline; }
+        .bg { fill: #F5F0E7; }
+        .surface { fill: #E9E2D7; }
+        .fg { fill: #15131B; }
+        .fg-stroke { stroke: #15131B; }
+        .muted { fill: #6E6876; }
+        .muted-stroke { stroke: #6E6876; }
+        .line { stroke: #D2C9BC; }
+        .blue { fill: #2645FF; }
+        .orange { fill: #ED512F; }
+        .on-blue { fill: #FBF7EF; }
+        .on-blue-stroke { stroke: #FBF7EF; }
+        .on-orange { fill: #15131B; }
+        .on-orange-stroke { stroke: #15131B; }
       }
-
-      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-      .serif { font-family: Georgia, "Times New Roman", serif; }
-      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
       @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
     </style>
-    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17" />
-      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10" />
-    </pattern>
   </defs>
-  <rect class="bg" width="430" height="850" />
-  <rect width="430" height="850" fill="url(#grain)" />
-  <text x="24" y="31" class="mono accent" font-size="9.5" letter-spacing="1.9">RIGHT NOW / FROM THE PUBLIC REPOS</text>
-  <text x="406" y="31" text-anchor="end" class="mono quiet" font-size="8" letter-spacing="1.05">2026.08.20</text>
-  <line x1="24" y1="48" x2="406" y2="48" class="line" />
-  <text x="20" y="172" class="serif fg" font-size="116" font-weight="700" letter-spacing="-8">NOW.</text>
-  <text x="24" y="204" class="mono muted" font-size="8.5" letter-spacing="1.1">THIS CHANGES WHEN I DO.</text>
-  <line x1="24" y1="236" x2="406" y2="236" class="line" />
-  <text x="24" y="268" class="mono quiet" font-size="8.5" letter-spacing="1.5">LAST PUBLIC CHANGE</text>
-  <text x="24" y="307" class="fg" font-size="26" font-weight="700">shohin-ettr</text>
-  <text x="24" y="340" class="muted" font-size="16.5" font-weight="500">
-    <tspan x="24" dy="0">Record corrected GPT-OSS mechanics</tspan>
-    <tspan x="24" dy="23">launch</tspan>
+  <rect class="bg" width="420" height="900" />
+  <rect class="orange" x="0" y="0" width="12" height="900" />
+  <text x="26" y="72" class="fg" font-size="54" font-weight="900" letter-spacing="-2.2">right now</text>
+  <text id="observed-date" x="394" y="102" text-anchor="end" class="muted" font-size="11" font-weight="650">2026.08.20</text>
+  <rect class="blue" x="24" y="130" width="372" height="252" rx="2" />
+  <text x="46" y="170" class="on-blue" font-size="15" font-weight="700">last thing I changed</text>
+  <text id="repository" x="46" y="220" class="on-blue" font-size="32" font-weight="880" letter-spacing="-1">shohin-ettr</text>
+  <text id="commit" x="46" y="258" class="on-blue" font-size="18" font-weight="560">
+    <tspan x="46" dy="0">Record corrected GPT-OSS</tspan>
+    <tspan x="46" dy="25">mechanics launch</tspan>
   </text>
-  <line x1="24" y1="422" x2="406" y2="422" class="line" />
-  <text x="24" y="454" class="mono quiet" font-size="8.5" letter-spacing="1.5">CURRENT RABBIT HOLE</text>
-  <text x="24" y="488" class="fg" font-size="19" font-weight="650">
-    <tspan x="24" dy="0">whether learned revision</tspan>
-    <tspan x="24" dy="26">survives sparse routing</tspan>
+  <text x="46" y="351" class="on-blue" opacity="0.65" font-size="11">pulled from the public repos</text>
+  <text x="26" y="437" class="orange" font-size="14" font-weight="750">I cannot stop thinking about</text>
+  <text id="rabbit-hole" x="26" y="474" class="fg" font-size="22" font-weight="720" letter-spacing="-0.35">
+    <tspan x="26" dy="0">whether a model can learn to</tspan>
+    <tspan x="26" dy="29">revise itself without</tspan>
+    <tspan x="26" dy="29">brute-force scale</tspan>
   </text>
-  <line x1="24" y1="585" x2="406" y2="585" class="line" />
-  <text x="24" y="617" class="mono quiet" font-size="8.5" letter-spacing="1.5">CURRENT BET</text>
-  <text x="24" y="651" class="fg" font-size="18" font-weight="620">
-    <tspan x="24" dy="0">algorithmic efficiency will</tspan>
-    <tspan x="24" dy="25">keep the AI race closer than</tspan>
-    <tspan x="24" dy="25">the compute gap suggests</tspan>
+  <line class="line" x1="26" y1="584" x2="394" y2="584" />
+  <text x="26" y="621" class="orange" font-size="14" font-weight="750">my bet</text>
+  <text id="current-bet" x="26" y="658" class="fg" font-size="22" font-weight="720" letter-spacing="-0.35">
+    <tspan x="26" dy="0">the AI race stays closer than</tspan>
+    <tspan x="26" dy="29">the compute budgets suggest</tspan>
   </text>
-  <line x1="24" y1="748" x2="406" y2="748" class="line" />
-  <text x="24" y="780" class="mono quiet" font-size="8.5" letter-spacing="1.35">CHANGED MY MIND ABOUT</text>
-  <text x="24" y="814" class="fg" font-size="17.5" font-weight="620">
-    <tspan x="24" dy="0">open source being destined to</tspan>
-    <tspan x="24" dy="24">stay one generation behind</tspan>
+  <line class="line" x1="26" y1="735" x2="394" y2="735" />
+  <text x="26" y="772" class="orange" font-size="14" font-weight="750">I changed my mind</text>
+  <text id="changed-mind" x="26" y="809" class="fg" font-size="21" font-weight="720" letter-spacing="-0.3">
+    <tspan x="26" dy="0">open models might not be stuck</tspan>
+    <tspan x="26" dy="28">a generation behind forever</tspan>
   </text>
 </svg>

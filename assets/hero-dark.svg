@@ -1,48 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 470" role="img" aria-labelledby="title desc">
-  <title id="title">Sai — night copy</title>
-  <desc id="desc">Sai&#x27;s profile cover. I get obsessed with a question. The stack comes later.</desc>
-  <defs>
-    <style>
-
-      .bg { fill: #080808; }
-      .paper { fill: #11110f; }
-      .fg { fill: #f4f1e8; }
-      .muted { fill: #9a978f; }
-      .quiet { fill: #5f5d58; }
-      .line { stroke: #2c2b28; }
-      .accent { fill: #d8ff43; }
-      .accent-stroke { stroke: #d8ff43; }
-
-      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-      .serif { font-family: Georgia, "Times New Roman", serif; }
-      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
-      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-    </style>
-    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
-      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
-    </pattern>
-  </defs>
-
-  <rect class="bg" width="846" height="470"/>
-  <rect width="846" height="470" fill="url(#grain)"/>
-  <line x1="38" y1="48" x2="808" y2="48" class="line"/>
-  <text x="38" y="31" class="mono accent" font-size="11" letter-spacing="2.4">SAI / NIGHT COPY</text>
-  <text x="808" y="31" text-anchor="end" class="mono quiet" font-size="9" letter-spacing="1.4">UCF / FLORIDA / USUALLY AWAKE TOO LATE</text>
-  <text x="24" y="272" class="serif fg" font-size="230" font-weight="700" letter-spacing="-18">SAI</text>
-  <text x="332" y="229" class="serif accent" font-size="168" font-style="italic">?</text>
-  <line x1="451" y1="80" x2="451" y2="390" class="line"/>
-  <text x="488" y="124" class="serif fg" font-size="38" font-weight="700">
-    <tspan x="488" dy="0">I get obsessed</tspan>
-<tspan x="488" dy="44">with a question.</tspan>
-  </text>
-  <text x="488" y="286" class="fg" font-size="22" font-weight="520">
-    <tspan x="488" dy="0">The stack comes later.</tspan>
-  </text>
-  <text x="488" y="367" class="mono muted" font-size="9" letter-spacing="1.25">MOST OF THIS REPOSITORY HAPPENED AFTER MIDNIGHT.</text>
-  <text x="38" y="438" class="mono quiet" font-size="9" letter-spacing="1.15">THERE IS ANOTHER VERSION OF THIS PAGE IN DAYLIGHT</text>
-  <rect class="motion accent" x="38" y="454" width="72" height="2">
-    <animate attributeName="x" values="38;736;38" dur="12s" repeatCount="indefinite"/>
-  </rect>
-
+  <title id="title">Saicharan Ramineni</title>
+  <desc id="desc">Sai. I am not very interested in making the expected thing.</desc>
+  <defs><style>
+    text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; }
+    @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+  </style></defs>
+  <rect width="846" height="470" fill="#090B16"/>
+  <rect x="545" y="0" width="301" height="470" fill="#4D64FF"/>
+  <text x="32" y="36" fill="#A9A4B3" font-size="13" font-weight="760" letter-spacing="1.7">SAICHARAN RAMINENI</text>
+  <text x="32" y="60" fill="#A9A4B3" font-size="12">Computer Science at UCF · Orlando</text>
+  <text x="17" y="340" fill="#F5F0E8" font-size="246" font-weight="900" letter-spacing="-20">SAI</text>
+  <circle cx="457" cy="120" r="83" fill="#FF6845"/>
+  <circle class="motion" cx="479" cy="108" r="78" fill="#090B16">
+    <animate attributeName="cx" values="479;461;479" dur="11s" repeatCount="indefinite"/>
+  </circle>
+  <text x="583" y="104" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">I am not very</text>
+  <text x="583" y="143" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">interested in</text>
+  <text x="583" y="182" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">making the</text>
+  <text x="583" y="221" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">expected thing.</text>
+  <line x1="583" y1="257" x2="813" y2="257" stroke="#FBF7EF" opacity="0.30"/>
+  <text x="583" y="296" fill="#FBF7EF" font-size="17" font-weight="650">Sometimes that is productive.</text>
+  <text x="583" y="405" fill="#FBF7EF" opacity="0.72" font-size="11.5">Most of this happens after midnight.</text>
+  <rect x="32" y="432" width="145" height="4" fill="#FF6845"/>
 </svg>

@@ -1,48 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 94" role="img" aria-labelledby="title desc">
-  <title id="title">ARGUE WITH ME</title>
-  <desc id="desc">Link: ARGUE WITH ME. bring evidence</desc>
-  <defs>
-    <style>
-
-      .bg { fill: #080808; }
-      .paper { fill: #11110f; }
-      .fg { fill: #f4f1e8; }
-      .muted { fill: #9a978f; }
-      .quiet { fill: #5f5d58; }
-      .line { stroke: #2c2b28; }
-      .accent { fill: #d8ff43; }
-      .accent-stroke { stroke: #d8ff43; }
-      .day-only { display: none; }
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 94" role="img" aria-label="start an argument">
+  <defs><style>
+      .bg { fill: #090B16; }
+      .surface { fill: #12172A; }
+      .fg { fill: #F5F0E8; }
+      .fg-stroke { stroke: #F5F0E8; }
+      .muted { fill: #A9A4B3; }
+      .muted-stroke { stroke: #A9A4B3; }
+      .line { stroke: #2B324D; }
+      .blue { fill: #4D64FF; }
+      .orange { fill: #FF6845; }
+      .on-blue { fill: #FBF7EF; }
+      .on-blue-stroke { stroke: #FBF7EF; }
+      .on-orange { fill: #15131B; }
+      .on-orange-stroke { stroke: #15131B; }
+      text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; stroke: none; }
       @media (prefers-color-scheme: light) {
-        .bg { fill: #f2eee5; }
-        .paper { fill: #ebe5da; }
-        .fg { fill: #111111; }
-        .muted { fill: #6e6a62; }
-        .quiet { fill: #9b958a; }
-        .line { stroke: #c9c1b3; }
-        .accent { fill: #1b6b4f; }
-        .accent-stroke { stroke: #1b6b4f; }
-        .night-only { display: none; }
-        .day-only { display: inline; }
+        .bg { fill: #F5F0E7; }
+        .surface { fill: #E9E2D7; }
+        .fg { fill: #15131B; }
+        .fg-stroke { stroke: #15131B; }
+        .muted { fill: #6E6876; }
+        .muted-stroke { stroke: #6E6876; }
+        .line { stroke: #D2C9BC; }
+        .blue { fill: #2645FF; }
+        .orange { fill: #ED512F; }
+        .on-blue { fill: #FBF7EF; }
+        .on-blue-stroke { stroke: #FBF7EF; }
+        .on-orange { fill: #15131B; }
+        .on-orange-stroke { stroke: #15131B; }
       }
-
-      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-      .serif { font-family: Georgia, "Times New Roman", serif; }
-      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
       @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-    </style>
-    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
-      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
-    </pattern>
-  </defs>
-
-  <rect class="bg" width="414" height="94"/>
-  <rect x="0.5" y="0.5" width="413" height="93" fill="none" class="line"/>
-  <text x="18" y="38" class="fg" font-size="17" font-weight="700">ARGUE WITH ME</text>
-  <text x="18" y="67" class="mono muted" font-size="8.5" letter-spacing="1.15">BRING EVIDENCE</text>
-  <g transform="translate(374 24)" fill="none" class="accent-stroke" stroke-width="1.7" stroke-linecap="square">
-    <path d="M0 13L13 0M3 0h10v10"/>
-  </g>
-
+    </style></defs>
+  <rect class="bg" x="0" y="0" width="410" height="94" rx="2"/>
+  <text x="24" y="57" class="fg" font-size="24" font-weight="820" letter-spacing="-0.5">start an argument</text>
+  <path d="M354 34 H379 V59 M379 34 L350 63" fill="none" class="fg-stroke" stroke-width="3" stroke-linecap="square"/>
 </svg>

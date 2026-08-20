@@ -1,65 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 560" role="img" aria-labelledby="title desc">
-  <title id="title">Offscreen</title>
-  <desc id="desc">Outside the terminal: lifting, spaceflight, AI competition, predictions, names, arguments, and caring about aura.</desc>
-  <defs>
-    <style>
-
-      .bg { fill: #080808; }
-      .paper { fill: #11110f; }
-      .fg { fill: #f4f1e8; }
-      .muted { fill: #9a978f; }
-      .quiet { fill: #5f5d58; }
-      .line { stroke: #2c2b28; }
-      .accent { fill: #d8ff43; }
-      .accent-stroke { stroke: #d8ff43; }
-      .day-only { display: none; }
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 500" role="img" aria-labelledby="title desc">
+  <title id="title">Easy ways to derail me</title>
+  <desc id="desc">Rockets, the AI race, design, predictions, and project names.</desc>
+  <defs><style>
+      .bg { fill: #090B16; }
+      .surface { fill: #12172A; }
+      .fg { fill: #F5F0E8; }
+      .fg-stroke { stroke: #F5F0E8; }
+      .muted { fill: #A9A4B3; }
+      .muted-stroke { stroke: #A9A4B3; }
+      .line { stroke: #2B324D; }
+      .blue { fill: #4D64FF; }
+      .orange { fill: #FF6845; }
+      .on-blue { fill: #FBF7EF; }
+      .on-blue-stroke { stroke: #FBF7EF; }
+      .on-orange { fill: #15131B; }
+      .on-orange-stroke { stroke: #15131B; }
+      text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; stroke: none; }
       @media (prefers-color-scheme: light) {
-        .bg { fill: #f2eee5; }
-        .paper { fill: #ebe5da; }
-        .fg { fill: #111111; }
-        .muted { fill: #6e6a62; }
-        .quiet { fill: #9b958a; }
-        .line { stroke: #c9c1b3; }
-        .accent { fill: #1b6b4f; }
-        .accent-stroke { stroke: #1b6b4f; }
-        .night-only { display: none; }
-        .day-only { display: inline; }
+        .bg { fill: #F5F0E7; }
+        .surface { fill: #E9E2D7; }
+        .fg { fill: #15131B; }
+        .fg-stroke { stroke: #15131B; }
+        .muted { fill: #6E6876; }
+        .muted-stroke { stroke: #6E6876; }
+        .line { stroke: #D2C9BC; }
+        .blue { fill: #2645FF; }
+        .orange { fill: #ED512F; }
+        .on-blue { fill: #FBF7EF; }
+        .on-blue-stroke { stroke: #FBF7EF; }
+        .on-orange { fill: #15131B; }
+        .on-orange-stroke { stroke: #15131B; }
       }
-
-      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-      .serif { font-family: Georgia, "Times New Roman", serif; }
-      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
       @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-    </style>
-    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" class="quiet" opacity="0.17"/>
-      <circle cx="5" cy="4" r="0.35" class="quiet" opacity="0.10"/>
-    </pattern>
-  </defs>
+    </style></defs>
+  <rect class="bg" width="846" height="500"/>
+  <circle class="orange" cx="790" cy="18" r="102"/>
+  <circle class="bg" cx="816" cy="8" r="96"/>
+  <text x="34" y="78" class="fg" font-size="56" font-weight="900" letter-spacing="-2.5">easy ways to derail me</text>
+  <text x="36" y="112" class="muted" font-size="14">This list is not exhaustive.</text>
 
-  <rect class="bg" width="846" height="560"/>
-  <rect width="846" height="560" fill="url(#grain)"/>
-  <text x="28" y="50" class="mono accent" font-size="9" letter-spacing="2">OFFSCREEN / A NON-EXHAUSTIVE LIST</text>
-  <line x1="28" y1="67" x2="818" y2="67" class="line"/>
+  <text x="38" y="181" class="orange" font-size="13" font-weight="800">01</text>
+  <text x="88" y="181" class="fg" font-size="25" font-weight="790">reusable rockets</text>
+  <text x="38" y="242" class="orange" font-size="13" font-weight="800">02</text>
+  <text x="88" y="242" class="fg" font-size="25" font-weight="790">who is actually winning</text>
+  <text x="88" y="271" class="fg" font-size="25" font-weight="790">the AI race</text>
+  <text x="38" y="332" class="orange" font-size="13" font-weight="800">03</text>
+  <text x="88" y="332" class="fg" font-size="25" font-weight="790">whether the design has</text>
+  <text x="88" y="361" class="fg" font-size="25" font-weight="790">enough aura</text>
 
-  <text x="31" y="142" class="serif fg" font-size="42" font-weight="700">I have opinions about rockets</text>
-  <text x="31" y="187" class="serif fg" font-size="42" font-weight="700">that nobody asked for.</text>
+  <text x="448" y="181" class="orange" font-size="13" font-weight="800">04</text>
+  <text x="498" y="181" class="fg" font-size="24" font-weight="790">a prediction I disagree with</text>
+  <text x="448" y="242" class="orange" font-size="13" font-weight="800">05</text>
+  <text x="498" y="242" class="fg" font-size="24" font-weight="790">the name of the next</text>
+  <text x="498" y="271" class="fg" font-size="24" font-weight="790">project</text>
+  <text x="448" y="332" class="orange" font-size="13" font-weight="800">06</text>
+  <text x="498" y="332" class="fg" font-size="24" font-weight="790">lifting, eventually</text>
 
-  <g class="mono" font-size="13" font-weight="650" letter-spacing="1.3">
-    <text x="31" y="259" class="accent" transform="rotate(-2 31 259)">LIFTING</text>
-    <text x="180" y="243" class="fg" transform="rotate(1.5 180 243)">SPACEFLIGHT</text>
-    <text x="373" y="268" class="muted" transform="rotate(-1 373 268)">US ↔ CHINA AI</text>
-    <text x="591" y="242" class="fg" transform="rotate(2 591 242)">COMPANY STRATEGY</text>
-    <text x="72" y="332" class="muted" transform="rotate(1 72 332)">NAMES</text>
-    <text x="224" y="350" class="fg" transform="rotate(-2 224 350)">PREDICTIONS</text>
-    <text x="449" y="326" class="accent" transform="rotate(1.8 449 326)">AURA</text>
-    <text x="611" y="353" class="muted" transform="rotate(-1.4 611 353)">ARGUMENTS</text>
-  </g>
-
-  <line x1="28" y1="390" x2="818" y2="390" class="line"/>
-  <text x="31" y="436" class="fg" font-size="23" font-weight="650">I can turn almost any forecast into a debate.</text>
-  <text x="31" y="482" class="fg" font-size="23" font-weight="650">I care about names more than is rational.</text>
-  <text x="31" y="528" class="fg" font-size="23" font-weight="650">I care about aura.</text>
-  <text x="242" y="528" class="muted" font-size="16">I know.</text>
-
+  <rect class="blue" x="34" y="405" width="778" height="62" rx="2"/>
+  <text x="58" y="433" class="on-blue" font-size="18" font-weight="720">I can turn almost any forecast into a debate.</text>
+  <text x="58" y="455" class="on-blue" opacity="0.70" font-size="12">This is not always a strength.</text>
 </svg>

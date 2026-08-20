@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Refresh the two live panels in Sai's GitHub profile."""
+"""Refresh the live panel in Sai's GitHub profile."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import textwrap
 import urllib.error
@@ -29,14 +30,15 @@ class Trace:
 
 
 def request_json(url: str):
-    request = urllib.request.Request(
-        url,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "GodlyDonuts-profile-renderer",
-            "X-GitHub-Api-Version": API_VERSION,
-        },
-    )
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "GodlyDonuts-profile-renderer",
+        "X-GitHub-Api-Version": API_VERSION,
+    }
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    request = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(request, timeout=20) as response:
         return json.load(response)
 
@@ -56,7 +58,8 @@ def fetch_trace(user: str) -> Trace:
         "?type=owner&sort=pushed&direction=desc&per_page=100"
     )
     candidates = [
-        repo for repo in repos
+        repo
+        for repo in repos
         if isinstance(repo, dict)
         and not repo.get("fork")
         and not repo.get("archived")
@@ -65,6 +68,7 @@ def fetch_trace(user: str) -> Trace:
     ]
     if not candidates:
         raise ValueError("no eligible public repositories")
+
     repo = max(candidates, key=lambda item: str(item["pushed_at"]))
     full_name = str(repo["full_name"])
     branch = str(repo.get("default_branch") or "main")
@@ -80,11 +84,15 @@ def fetch_trace(user: str) -> Trace:
         )
     if not commits:
         raise ValueError(f"no commits returned for {full_name}")
+
     chosen = next(
         (
-            item for item in commits
+            item
+            for item in commits
             if not str((item.get("commit") or {}).get("message") or "")
-            .splitlines()[0].lower().startswith("merge pull request")
+            .splitlines()[0]
+            .lower()
+            .startswith("merge pull request")
         ),
         commits[0],
     )
@@ -128,11 +136,18 @@ def wrap(text: str, width: int, max_lines: int) -> list[str]:
     return lines
 
 
-def find_text(root: ET.Element, x: str, y: str) -> ET.Element:
-    for element in root.findall(f".//{{{SVG}}}text"):
-        if element.get("x") == x and element.get("y") == y:
+def clip(text: str, max_chars: int) -> str:
+    compact = " ".join(text.split())
+    if len(compact) <= max_chars:
+        return compact
+    return compact[: max_chars - 1].rstrip(" ._-") + "…"
+
+
+def find_id(root: ET.Element, element_id: str) -> ET.Element:
+    for element in root.iter():
+        if element.get("id") == element_id:
             return element
-    raise ValueError(f"missing text node at {x},{y}")
+    raise ValueError(f"missing element with id={element_id!r}")
 
 
 def set_lines(element: ET.Element, lines: list[str], x: str, dy: int) -> None:
@@ -140,7 +155,11 @@ def set_lines(element: ET.Element, lines: list[str], x: str, dy: int) -> None:
     for child in list(element):
         element.remove(child)
     for index, line in enumerate(lines):
-        span = ET.SubElement(element, f"{{{SVG}}}tspan", {"x": x, "dy": "0" if index == 0 else str(dy)})
+        span = ET.SubElement(
+            element,
+            f"{{{SVG}}}tspan",
+            {"x": x, "dy": "0" if index == 0 else str(dy)},
+        )
         span.text = line
         span.tail = "\n    "
 
@@ -148,27 +167,25 @@ def set_lines(element: ET.Element, lines: list[str], x: str, dy: int) -> None:
 def render(path: Path, trace: Trace, config: dict, *, mobile: bool) -> bool:
     tree = ET.parse(path)
     root = tree.getroot()
-    desc = root.find(f"{{{SVG}}}desc")
-    if desc is not None:
-        desc.text = (
-            f"Right now. Last public work in {trace.repository}: {trace.message}. "
-            f"Current rabbit hole: {config['rabbit_hole']}. Current bet: {config['current_bet']}."
-        )
+    desc = find_id(root, "desc")
+    desc.text = (
+        f"Sai's latest public change is in {trace.repository}: {trace.message}. "
+        f"He is thinking about {config['rabbit_hole']}."
+    )
+
+    find_id(root, "observed-date").text = observed_date(trace.observed_at)
+    find_id(root, "repository").text = clip(trace.repository, 22 if mobile else 24)
 
     if mobile:
-        find_text(root, "406", "31").text = observed_date(trace.observed_at)
-        find_text(root, "24", "307").text = trace.repository
-        set_lines(find_text(root, "24", "340"), wrap(trace.message, 40, 2), "24", 23)
-        set_lines(find_text(root, "24", "488"), wrap(str(config["rabbit_hole"]), 30, 2), "24", 26)
-        set_lines(find_text(root, "24", "651"), wrap(str(config["current_bet"]), 28, 3), "24", 25)
-        set_lines(find_text(root, "24", "814"), wrap(str(config["changed_my_mind"]), 29, 2), "24", 24)
+        set_lines(find_id(root, "commit"), wrap(trace.message, 31, 2), "46", 25)
+        set_lines(find_id(root, "rabbit-hole"), wrap(str(config["rabbit_hole"]), 29, 3), "26", 29)
+        set_lines(find_id(root, "current-bet"), wrap(str(config["current_bet"]), 29, 2), "26", 29)
+        set_lines(find_id(root, "changed-mind"), wrap(str(config["changed_my_mind"]), 31, 2), "26", 28)
     else:
-        find_text(root, "812", "34").text = f"LAST REAL CHANGE / {observed_date(trace.observed_at)}"
-        find_text(root, "340", "129").text = trace.repository
-        set_lines(find_text(root, "340", "160"), wrap(trace.message, 52, 2), "340", 24)
-        set_lines(find_text(root, "340", "279"), wrap(str(config["rabbit_hole"]), 45, 2), "340", 27)
-        set_lines(find_text(root, "34", "337"), wrap(str(config["current_bet"]), 42, 3), "34", 25)
-        set_lines(find_text(root, "340", "425"), wrap(str(config["changed_my_mind"]), 46, 2), "340", 24)
+        set_lines(find_id(root, "commit"), wrap(trace.message, 27, 2), "70", 27)
+        set_lines(find_id(root, "rabbit-hole"), wrap(str(config["rabbit_hole"]), 38, 2), "430", 30)
+        set_lines(find_id(root, "current-bet"), wrap(str(config["current_bet"]), 35, 2), "430", 30)
+        set_lines(find_id(root, "changed-mind"), wrap(str(config["changed_my_mind"]), 34, 2), "430", 27)
 
     ET.indent(tree, space="  ")
     content = ET.tostring(root, encoding="unicode") + "\n"
@@ -196,7 +213,8 @@ def main() -> int:
             print(f"warning: using fallback public state: {exc}")
 
     changed = [
-        name for name, mobile in (("now.svg", False), ("now-mobile.svg", True))
+        name
+        for name, mobile in (("now.svg", False), ("now-mobile.svg", True))
         if render(args.output / name, trace, config, mobile=mobile)
     ]
     print("updated: " + ", ".join(changed) if changed else "unchanged")
