@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="Live signal. Current orbit shohin-ettr. Latest transmission: Record corrected GPT-OSS mechanics launch. Open question: What changes when a model learns not only to answer, but to reconsider?">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="Live signal. Current orbit shohin-ettr. Latest transmission: Merge pull request #4 from GodlyDonuts/codex/q36-mechanics-generation-prepare. Open question: What changes when a model learns not only to answer, but to reconsider?">
   <defs>
     <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#f59e0b" stop-opacity="0"/>
@@ -51,11 +51,12 @@
 
     <text x="48" y="94" class="mono quiet" font-size="10" letter-spacing="2">CURRENT ORBIT</text>
     <text x="48" y="139" class="primary" font-size="31" font-weight="650">shohin-ettr</text>
-    <text x="48" y="165" class="mono secondary" font-size="10" letter-spacing="1.2">OBSERVED 2026.08.20 / 01:18 UTC</text>
+    <text x="48" y="165" class="mono secondary" font-size="10" letter-spacing="1.2">OBSERVED 2026.08.20 / 01:37 UTC</text>
 
     <text x="465" y="94" class="mono quiet" font-size="10" letter-spacing="2">LATEST TRANSMISSION</text>
     <text x="465" y="128" class="secondary" font-size="20" font-weight="500">
-        <tspan x="465" dy="0">Record corrected GPT-OSS mechanics launch</tspan>
+        <tspan x="465" dy="0">Merge pull request #4 from</tspan>
+        <tspan x="465" dy="27">GodlyDonuts/codex/q36-mechanics-generation-prepare</tspan>
     </text>
 
     <g transform="translate(1080 105)" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" opacity="0.88">
