@@ -1,179 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 760" role="img" aria-labelledby="title desc">
-  <title id="title">Easy ways to derail me</title>
-  <desc id="desc">Rockets, the AI race, design, predictions, project names, and lifting.</desc>
-  <defs><style>
-      .bg { fill: #090B16; }
-      .surface { fill: #12172A; }
-      .fg { fill: #F5F0E8; }
-      .fg-stroke { stroke: #F5F0E8; }
-      .muted { fill: #A9A4B3; }
-      .muted-stroke { stroke: #A9A4B3; }
-      .line { stroke: #2B324D; }
-      .blue { fill: #4D64FF; }
-      .orange { fill: #FF6845; }
-      .on-blue { fill: #FBF7EF; }
-      .on-blue-stroke { stroke: #FBF7EF; }
-      .on-orange { fill: #15131B; }
-      .on-orange-stroke { stroke: #15131B; }
-      text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; stroke: none; }
-      @media (prefers-color-scheme: light) {
-        .bg { fill: #F5F0E7; }
-        .surface { fill: #E9E2D7; }
-        .fg { fill: #15131B; }
-        .fg-stroke { stroke: #15131B; }
-        .muted { fill: #6E6876; }
-        .muted-stroke { stroke: #6E6876; }
-        .line { stroke: #D2C9BC; }
-        .blue { fill: #2645FF; }
-        .orange { fill: #ED512F; }
-        .on-blue { fill: #FBF7EF; }
-        .on-blue-stroke { stroke: #FBF7EF; }
-        .on-orange { fill: #15131B; }
-        .on-orange-stroke { stroke: #15131B; }
-      }
-      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-    </style>
-    <radialGradient id="offscreen-m-halo" cx="50%" cy="50%" r="50%">
-      <stop offset="0.00" stop-color="#FF6845" stop-opacity="0"/>
-      <stop offset="0.57" stop-color="#FF6845" stop-opacity="0"/>
-      <stop offset="0.67" stop-color="#FFF0C8" stop-opacity="0.98"/>
-      <stop offset="0.71" stop-color="#FFB45C" stop-opacity="0.92"/>
-      <stop offset="0.79" stop-color="#FF6845" stop-opacity="0.55"/>
-      <stop offset="1.00" stop-color="#FF6845" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="offscreen-m-rim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0" stop-color="#FFF8E8"/>
-      <stop offset="0.30" stop-color="#FFD28B"/>
-      <stop offset="0.66" stop-color="#FF6845"/>
-      <stop offset="1" stop-color="#B82E20"/>
-    </linearGradient>
-    <filter id="offscreen-m-blur" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="10"/>
-    </filter>
-    <filter id="offscreen-m-soft" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="3.2"/>
-    </filter></defs>
-  <rect class="bg" width="420" height="760"/>
-  <g transform="translate(365 80) scale(0.93182)">
-    <circle r="126" fill="url(#offscreen-m-halo)" opacity="0.96"/>
-    <circle r="103" fill="none" stroke="#FF6845" stroke-width="16" opacity="0.22" filter="url(#offscreen-m-blur)"/>
-
-    <g fill="none" stroke-linecap="round">
-      <path d="M-67 -75 C-91 -55 -103 -24 -102 6" stroke="#FFD28B" stroke-width="2.8" opacity="0.74"/>
-      <path d="M-82 48 C-66 81 -38 101 -6 106" stroke="#FF6845" stroke-width="3.8" opacity="0.72"/>
-      <path d="M28 102 C63 92 91 66 104 34" stroke="#FFB45C" stroke-width="2.6" opacity="0.78"/>
-      <path d="M78 -63 C99 -37 106 -8 102 18" stroke="#FFF0C8" stroke-width="2.2" opacity="0.75"/>
-      <path d="M-31 -105 C-19 -113 -6 -119 9 -120" stroke="#FF6845" stroke-width="2.1" opacity="0.66"/>
-    </g>
-    <g stroke="#FF6845" stroke-linecap="round" opacity="0.66">
-      <path d="M0 -101V-122" stroke-width="2.4"/>
-      <path d="M71 -72L87 -88" stroke-width="2.0"/>
-      <path d="M100 4L124 5" stroke-width="2.8"/>
-      <path d="M70 74L88 92" stroke-width="2.2"/>
-      <path d="M-3 101L-5 126" stroke-width="2.7"/>
-      <path d="M-73 72L-92 89" stroke-width="1.8"/>
-      <path d="M-101 -5L-126 -6" stroke-width="2.4"/>
-      <path d="M-72 -71L-91 -90" stroke-width="2.0"/>
-    </g>
-
-    <!-- A second corona drifts independently of the fixed drawing. -->
-    <g class="motion" fill="none" stroke-linecap="round" opacity="0.52">
-      <animateTransform attributeName="transform" type="rotate"
-        values="-1.8 0 0;2.4 0 0;-0.7 0 0;-1.8 0 0"
-        keyTimes="0;0.41;0.76;1" dur="19s" repeatCount="indefinite"/>
-      <path d="M-78 -79 C-103 -52 -113 -13 -105 22" stroke="#FFF0C8" stroke-width="1.2"/>
-      <path d="M-92 39 C-77 78 -43 106 -3 113" stroke="#FF6845" stroke-width="2.1"/>
-      <path d="M19 112 C61 103 96 73 110 32" stroke="#FFD28B" stroke-width="1.55"/>
-      <path d="M67 -82 C96 -57 111 -21 108 14" stroke="#FFF8E8" stroke-width="1.05"/>
-    </g>
-    <g class="motion" stroke="#FF6845" stroke-linecap="round" opacity="0.38">
-      <animateTransform attributeName="transform" type="rotate"
-        values="1.1 0 0;-1.6 0 0;0.5 0 0;1.1 0 0"
-        keyTimes="0;0.36;0.71;1" dur="27s" repeatCount="indefinite"/>
-      <path d="M20 -109L24 -132" stroke-width="1.6"/>
-      <path d="M90 -54L110 -66" stroke-width="1.25"/>
-      <path d="M108 27L132 32" stroke-width="1.7"/>
-      <path d="M54 91L66 113" stroke-width="1.35"/>
-      <path d="M-28 107L-34 131" stroke-width="1.45"/>
-      <path d="M-91 57L-112 69" stroke-width="1.15"/>
-      <path d="M-108 -28L-132 -34" stroke-width="1.5"/>
-      <path d="M-54 -91L-67 -113" stroke-width="1.25"/>
-    </g>
-
-    <circle r="91" fill="none" stroke="url(#offscreen-m-rim)" stroke-width="6.5"/>
-    <circle class="motion" r="91" fill="none" stroke="#FFF4D6" stroke-width="2.2" opacity="0.28">
-      <animate attributeName="stroke-width" values="1.2;4.2;2.0;1.2" keyTimes="0;0.34;0.72;1" dur="10.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.14;0.58;0.30;0.14" keyTimes="0;0.34;0.72;1" dur="10.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="-3" cy="2" r="86" fill="#090B16"/>
-    <circle class="motion" cx="-3" cy="2" r="84.5" fill="none" stroke="#0A0B12" stroke-width="2" opacity="0.36">
-      <animate attributeName="cx" values="-3;-1;-4;-3" dur="16s" repeatCount="indefinite"/>
-      <animate attributeName="cy" values="2;1;3;2" dur="16s" repeatCount="indefinite"/>
-    </circle>
-    <path d="M-62 -61 A87 87 0 0 1 74 -44" fill="none" stroke="#FFF6DE" stroke-width="1.4" opacity="0.48"/>
-    <path class="motion" d="M-58 -64 A87 87 0 0 1 71 -48" fill="none" stroke="#FFFFFF" stroke-width="1.0" opacity="0.16">
-      <animate attributeName="opacity" values="0.08;0.36;0.15;0.08" dur="12.5s" repeatCount="indefinite"/>
-    </path>
-
-    <!-- The diamond ring is always present; only its glint wanders. -->
-    <g transform="translate(75 -43)">
-      <circle r="17" fill="#FFB45C" opacity="0.42" filter="url(#offscreen-m-blur)"/>
-      <circle r="7.2" fill="#FFF8E8" filter="url(#offscreen-m-soft)"/>
-      <circle r="3.3" fill="#FFFFFF"/>
-      <g stroke="#FFF6DE" stroke-linecap="round" opacity="0.88">
-        <path d="M-27 0H27" stroke-width="1.7"/>
-        <path d="M0 -27V27" stroke-width="1.7"/>
-        <path d="M-18 -18L18 18" stroke-width="1.0"/>
-        <path d="M18 -18L-18 18" stroke-width="1.0"/>
-      </g>
-      <g class="motion">
-        <animateTransform attributeName="transform" type="translate"
-          values="0 0;3 -1;1 2;-2 1;0 0" keyTimes="0;0.24;0.53;0.79;1" dur="13s" repeatCount="indefinite"/>
-        <circle r="21" fill="#FFB45C" opacity="0.12" filter="url(#offscreen-m-blur)">
-          <animate attributeName="r" values="18;27;20;18" dur="13s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.08;0.32;0.14;0.08" dur="13s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="4.4" fill="#FFFFFF" opacity="0.52" filter="url(#offscreen-m-soft)">
-          <animate attributeName="r" values="3.6;6.2;4.2;3.6" dur="13s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.32;0.92;0.48;0.32" dur="13s" repeatCount="indefinite"/>
-        </circle>
-        <g stroke="#FFFFFF" stroke-linecap="round" opacity="0.48">
-          <path d="M-34 0H34" stroke-width="1.05"/>
-          <path d="M0 -34V34" stroke-width="1.05"/>
-          <animate attributeName="opacity" values="0.24;0.82;0.40;0.24" dur="13s" repeatCount="indefinite"/>
-        </g>
-      </g>
-    </g>
-
-    <circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.2" opacity="0.22">
-      <animate attributeName="r" values="106;115;109;106" keyTimes="0;0.37;0.72;1" dur="8.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.10;0.31;0.17;0.10" keyTimes="0;0.37;0.72;1" dur="8.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle class="motion" r="119" fill="none" stroke="#FF6845" stroke-width="0.75" opacity="0.11">
-      <animate attributeName="r" values="116;124;119;116" dur="14s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.05;0.18;0.09;0.05" dur="14s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  <text x="22" y="69" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">easy ways</text>
-  <text x="22" y="116" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">to derail me</text>
-  <text x="22" y="157" class="muted" font-size="14">Any one of these will do.</text>
-
-  <text x="24" y="238" class="orange" font-size="13" font-weight="800">01</text>
-  <text x="68" y="238" class="fg" font-size="23" font-weight="770">reusable rockets</text>
-  <text x="24" y="306" class="orange" font-size="13" font-weight="800">02</text>
-  <text x="68" y="306" class="fg" font-size="23" font-weight="770">who is actually winning</text>
-  <text x="68" y="335" class="fg" font-size="23" font-weight="770">the AI race</text>
-  <text x="24" y="391" class="orange" font-size="13" font-weight="800">03</text>
-  <text x="68" y="391" class="fg" font-size="23" font-weight="770">whether the design has</text>
-  <text x="68" y="420" class="fg" font-size="23" font-weight="770">enough aura</text>
-  <text x="24" y="476" class="orange" font-size="13" font-weight="800">04</text>
-  <text x="68" y="476" class="fg" font-size="23" font-weight="770">a prediction I think is wrong</text>
-  <text x="24" y="544" class="orange" font-size="13" font-weight="800">05</text>
-  <text x="68" y="544" class="fg" font-size="23" font-weight="770">naming the next project</text>
-  <text x="24" y="612" class="orange" font-size="13" font-weight="800">06</text>
-  <text x="68" y="612" class="fg" font-size="23" font-weight="770">lifting, eventually</text>
-
-  <rect class="blue" x="18" y="670" width="384" height="66" rx="2"/>
-  <text x="32" y="699" class="on-blue" font-size="16" font-weight="700">I can turn almost any forecast into a debate.</text>
-  <text x="32" y="722" class="on-blue" opacity="0.7" font-size="12">Usually before anyone asks.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 760" role="img" aria-label="Easy ways to derail me">
+<defs>
+<style>
+.bg{fill:#090B16}.fg{fill:#F5F0E8}.muted{fill:#A9A4B3}.blue{fill:#4D64FF}.orange{fill:#FF6845}.onblue{fill:#FBF7EF}text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}@media(prefers-color-scheme:light){.bg{fill:#F5F0E7}.fg{fill:#15131B}.muted{fill:#6E6876}.blue{fill:#2645FF}.orange{fill:#ED512F}}@media(prefers-reduced-motion:reduce){.motion{display:none}}
+</style>
+<radialGradient id="h"><stop offset=".54" stop-color="#FF6845" stop-opacity="0"/><stop offset=".67" stop-color="#FFF5D5"/><stop offset=".72" stop-color="#FFB45C" stop-opacity=".9"/><stop offset=".86" stop-color="#FF6845" stop-opacity=".18"/><stop offset="1" stop-color="#FF6845" stop-opacity="0"/></radialGradient>
+<linearGradient id="r" x2="1" y2="1"><stop stop-color="#FFF8E8"/><stop offset=".32" stop-color="#FFD28B"/><stop offset=".7" stop-color="#FF6845"/><stop offset="1" stop-color="#B82E20"/></linearGradient>
+<filter id="b" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect class="bg" width="420" height="760"/>
+<g transform="translate(365 80) scale(.93)">
+<circle r="126" fill="url(#h)"/>
+<circle class="motion" r="111" fill="none" stroke="#FFB45C" stroke-width="16" opacity=".14" filter="url(#b)"><animate attributeName="r" values="104;132;112;104" dur="6.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".06;.55;.18;.06" dur="6.8s" repeatCount="indefinite"/></circle>
+<g class="motion" fill="none" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="-14 0 0;15 0 0;-5 0 0;-14 0 0" dur="8.4s" repeatCount="indefinite"/><path d="M-82-72C-108-44-113-6-103 28" stroke="#FFF0C8" stroke-width="2"/><path d="M-94 35C-76 80-36 109 8 113" stroke="#FF6845" stroke-width="3"/><path d="M23 111C67 99 99 66 110 23" stroke="#FFD28B" stroke-width="2.4"/><path d="M63-86C98-58 112-18 106 20" stroke="#FFF8E8" stroke-width="1.7"/></g>
+<circle r="91" fill="none" stroke="url(#r)" stroke-width="7"/>
+<circle cx="-3" cy="2" r="86" fill="#080910"/>
+<circle class="motion" r="94" fill="none" stroke="#FFF8E8" stroke-width="3.3" stroke-linecap="round" stroke-dasharray="48 545" transform="rotate(-150)" opacity=".62"><animateTransform attributeName="transform" type="rotate" values="-160 0 0;-40 0 0;-105 0 0;-160 0 0" dur="6.8s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.2;5;3;2.2" dur="6.8s" repeatCount="indefinite"/></circle>
+<g class="motion"><animateTransform attributeName="transform" type="rotate" values="-78 0 0;38 0 0;-10 0 0;-78 0 0" dur="6.8s" repeatCount="indefinite"/><g transform="translate(75 -43)"><circle r="22" fill="#FFB45C" opacity=".38" filter="url(#b)"/><circle r="6" fill="#fff"><animate attributeName="r" values="3.8;8;5;3.8" dur="6.8s" repeatCount="indefinite"/></circle><path d="M-21 0H21M0-21V21" stroke="#FFF8E8" stroke-width="1.7"/></g></g>
+<circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.6"><animate attributeName="r" values="102;126;108;102" dur="6.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.62;.24;.08" dur="6.2s" repeatCount="indefinite"/></circle>
+</g>
+<text x="22" y="69" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">easy ways</text><text x="22" y="116" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">to derail me</text><text x="22" y="157" class="muted" font-size="14">Any one of these will do.</text>
+<g font-size="13" font-weight="800" class="orange"><text x="24" y="238">01</text><text x="24" y="306">02</text><text x="24" y="391">03</text><text x="24" y="476">04</text><text x="24" y="544">05</text><text x="24" y="612">06</text></g>
+<g class="fg" font-size="23" font-weight="770"><text x="68" y="238">reusable rockets</text><text x="68" y="306">who is actually winning</text><text x="68" y="335">the AI race</text><text x="68" y="391">whether the design has</text><text x="68" y="420">enough aura</text><text x="68" y="476">a prediction I think is wrong</text><text x="68" y="544">naming the next project</text><text x="68" y="612">lifting, eventually</text></g>
+<rect class="blue" x="18" y="670" width="384" height="66" rx="2"/><text x="32" y="699" class="onblue" font-size="16" font-weight="700">I can turn almost any forecast into a debate.</text><text x="32" y="722" class="onblue" opacity=".7" font-size="12">Usually before anyone asks.</text>
 </svg>
