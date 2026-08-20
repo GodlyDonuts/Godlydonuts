@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 1000" role="img" aria-labelledby="title desc">
   <title id="title">The pattern, so far</title>
-  <desc id="desc">Three habits behind Sai's work.</desc>
+  <desc id="desc">Three recurring habits behind Sai's work.</desc>
   <defs><style>
       .bg { fill: #090B16; }
       .surface { fill: #12172A; }
@@ -41,21 +41,21 @@
   <text x="38" y="215" class="on-blue" opacity="0.55" font-size="50" font-weight="900">01</text>
   <text x="38" y="271" class="on-blue" font-size="27" font-weight="850" letter-spacing="-0.8">I try to make small models</text>
   <text x="38" y="305" class="on-blue" font-size="27" font-weight="850" letter-spacing="-0.8">think twice.</text>
-  <text x="38" y="342" class="on-blue" opacity="0.78" font-size="15.5">Shohin adds a real revision step without</text>
-  <text x="38" y="365" class="on-blue" opacity="0.78" font-size="15.5">buying the answer with scale.</text>
+  <text x="38" y="342" class="on-blue" opacity="0.80" font-size="15.5">Shohin gives them somewhere to revise,</text>
+  <text x="38" y="365" class="on-blue" opacity="0.80" font-size="15.5">not just more tokens to spend.</text>
 
   <line class="line" x1="20" y1="431" x2="400" y2="431"/>
   <text x="22" y="487" class="orange" font-size="50" font-weight="900">02</text>
-  <text x="22" y="535" class="fg" font-size="27" font-weight="850" letter-spacing="-0.8">I end up below the</text>
-  <text x="22" y="568" class="fg" font-size="27" font-weight="850" letter-spacing="-0.8">abstraction.</text>
-  <text x="22" y="611" class="muted" font-size="15.5">When the library hides the interesting part,</text>
-  <text x="22" y="634" class="muted" font-size="15.5">I start reading the source.</text>
+  <text x="22" y="535" class="fg" font-size="27" font-weight="850" letter-spacing="-0.8">Sooner or later, I read</text>
+  <text x="22" y="568" class="fg" font-size="27" font-weight="850" letter-spacing="-0.8">the source.</text>
+  <text x="22" y="611" class="muted" font-size="15.5">The API is useful until the result stops</text>
+  <text x="22" y="634" class="muted" font-size="15.5">making sense.</text>
   <text x="22" y="676" class="fg" font-size="12" font-weight="720">PyTorch · TensorFlow · JAX</text>
 
   <rect class="orange" x="18" y="720" width="384" height="248" rx="2"/>
   <text x="38" y="772" class="on-orange" opacity="0.5" font-size="50" font-weight="900">03</text>
-  <text x="38" y="827" class="on-orange" font-size="27" font-weight="850" letter-spacing="-0.8">I build before I feel</text>
-  <text x="38" y="860" class="on-orange" font-size="27" font-weight="850" letter-spacing="-0.8">ready.</text>
-  <text x="38" y="900" class="on-orange" font-size="16">It is faster than waiting to feel qualified.</text>
+  <text x="38" y="827" class="on-orange" font-size="27" font-weight="850" letter-spacing="-0.8">I start before I know</text>
+  <text x="38" y="860" class="on-orange" font-size="27" font-weight="850" letter-spacing="-0.8">how.</text>
+  <text x="38" y="900" class="on-orange" font-size="16">The project usually teaches me the rest.</text>
   <text x="38" y="941" class="on-orange" font-size="12" font-weight="720">Porter · Sentinel · Crisis Averted</text>
 </svg>

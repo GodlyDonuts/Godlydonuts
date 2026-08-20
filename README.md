@@ -1,6 +1,6 @@
 <!--
-You found the boring version.
-The visible page is four layouts and one tiny renderer wearing a README trench coat.
+This is still a README.
+It took an unreasonable amount of SVG to hide that.
 -->
 
 <p align="center">
@@ -9,21 +9,21 @@ The visible page is four layouts and one tiny renderer wearing a README trench c
     <source media="(max-width: 640px) and (prefers-color-scheme: light)" srcset="assets/hero-light-mobile.svg" />
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg" />
-    <img src="assets/hero-light.svg" width="100%" alt="Sai. I am not very interested in making the expected thing." />
+    <img src="assets/hero-light.svg" width="100%" alt="Sai. The idea is usually too ambitious. He starts anyway." />
   </picture>
 </p>
 
 <a href="https://github.com/GodlyDonuts?tab=repositories&sort=updated">
   <picture>
     <source media="(max-width: 640px)" srcset="assets/now-mobile.svg" />
-    <img src="assets/now.svg" width="100%" alt="Sai's latest public change and current ideas." />
+    <img src="assets/now.svg" width="100%" alt="Sai's latest public change, current question, current bet, and recent change of mind." />
   </picture>
 </a>
 
 <a href="https://github.com/GodlyDonuts?tab=repositories">
   <picture>
     <source media="(max-width: 640px)" srcset="assets/why-mobile.svg" />
-    <img src="assets/why.svg" width="100%" alt="The pattern behind Sai's work: small models that revise, framework internals, and building before feeling ready." />
+    <img src="assets/why.svg" width="100%" alt="The pattern behind Sai's work: small models that revise, reading framework source, and starting before knowing how." />
   </picture>
 </a>
 

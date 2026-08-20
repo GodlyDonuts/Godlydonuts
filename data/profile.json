@@ -1,7 +1,7 @@
 {
-  "rabbit_hole": "whether a model can learn to revise itself without brute-force scale",
-  "current_bet": "the AI race stays closer than the compute budgets suggest",
-  "changed_my_mind": "open models might not be stuck a generation behind forever",
+  "rabbit_hole": "whether revision can be learned instead of prompted",
+  "current_bet": "algorithmic efficiency keeps shrinking the hardware gap",
+  "changed_my_mind": "open models staying a generation behind forever",
   "fallback": {
     "repository": "shohin-ettr",
     "message": "Record corrected GPT-OSS mechanics launch",

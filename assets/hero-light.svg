@@ -1,25 +1,83 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 470" role="img" aria-labelledby="title desc">
   <title id="title">Saicharan Ramineni</title>
-  <desc id="desc">Sai. I am not very interested in making the expected thing.</desc>
-  <defs><style>
-    text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; }
-    @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-  </style></defs>
+  <desc id="desc">Sai. The idea is usually too ambitious. He starts anyway.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    </style>
+    <radialGradient id="hero-light-d-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0.00" stop-color="#ED512F" stop-opacity="0"/>
+      <stop offset="0.57" stop-color="#ED512F" stop-opacity="0"/>
+      <stop offset="0.67" stop-color="#FFF0C8" stop-opacity="0.98"/>
+      <stop offset="0.71" stop-color="#FFB45C" stop-opacity="0.92"/>
+      <stop offset="0.79" stop-color="#ED512F" stop-opacity="0.55"/>
+      <stop offset="1.00" stop-color="#ED512F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hero-light-d-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0" stop-color="#FFF8E8"/>
+      <stop offset="0.30" stop-color="#FFD28B"/>
+      <stop offset="0.66" stop-color="#ED512F"/>
+      <stop offset="1" stop-color="#B82E20"/>
+    </linearGradient>
+    <filter id="hero-light-d-blur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="hero-light-d-soft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+  </defs>
   <rect width="846" height="470" fill="#F5F0E7"/>
   <rect x="545" y="0" width="301" height="470" fill="#2645FF"/>
   <text x="32" y="36" fill="#6E6876" font-size="13" font-weight="760" letter-spacing="1.7">SAICHARAN RAMINENI</text>
   <text x="32" y="60" fill="#6E6876" font-size="12">Computer Science at UCF · Orlando</text>
+  
+  <g transform="translate(470 135) scale(1.02273)">
+    <circle r="126" fill="url(#hero-light-d-halo)" opacity="0.96"/>
+    <circle r="103" fill="none" stroke="#ED512F" stroke-width="16" opacity="0.22" filter="url(#hero-light-d-blur)"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M-67 -75 C-91 -55 -103 -24 -102 6" stroke="#FFD28B" stroke-width="2.8" opacity="0.74"/>
+      <path d="M-82 48 C-66 81 -38 101 -6 106" stroke="#ED512F" stroke-width="3.8" opacity="0.72"/>
+      <path d="M28 102 C63 92 91 66 104 34" stroke="#FFB45C" stroke-width="2.6" opacity="0.78"/>
+      <path d="M78 -63 C99 -37 106 -8 102 18" stroke="#FFF0C8" stroke-width="2.2" opacity="0.75"/>
+      <path d="M-31 -105 C-19 -113 -6 -119 9 -120" stroke="#ED512F" stroke-width="2.1" opacity="0.66"/>
+    </g>
+    <g stroke="#ED512F" stroke-linecap="round" opacity="0.66">
+      <path d="M0 -101V-122" stroke-width="2.4"/>
+      <path d="M71 -72L87 -88" stroke-width="2.0"/>
+      <path d="M100 4L124 5" stroke-width="2.8"/>
+      <path d="M70 74L88 92" stroke-width="2.2"/>
+      <path d="M-3 101L-5 126" stroke-width="2.7"/>
+      <path d="M-73 72L-92 89" stroke-width="1.8"/>
+      <path d="M-101 -5L-126 -6" stroke-width="2.4"/>
+      <path d="M-72 -71L-91 -90" stroke-width="2.0"/>
+    </g>
+    <circle r="91" fill="none" stroke="url(#hero-light-d-rim)" stroke-width="6.5"/>
+    <circle cx="-3" cy="2" r="86" fill="#15131B"/>
+    <path d="M-62 -61 A87 87 0 0 1 74 -44" fill="none" stroke="#FFF6DE" stroke-width="1.4" opacity="0.48"/>
+    <g transform="translate(75 -43)">
+      <circle r="17" fill="#FFB45C" opacity="0.42" filter="url(#hero-light-d-blur)"/>
+      <circle r="7.2" fill="#FFF8E8" filter="url(#hero-light-d-soft)"/>
+      <circle r="3.3" fill="#FFFFFF"/>
+      <g stroke="#FFF6DE" stroke-linecap="round" opacity="0.88">
+        <path d="M-27 0H27" stroke-width="1.7"/>
+        <path d="M0 -27V27" stroke-width="1.7"/>
+        <path d="M-18 -18L18 18" stroke-width="1.0"/>
+        <path d="M18 -18L-18 18" stroke-width="1.0"/>
+      </g>
+    </g>
+    <circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.2" opacity="0.22">
+      <animate attributeName="r" values="106;114;106" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.12;0.30;0.12" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
   <text x="17" y="340" fill="#15131B" font-size="246" font-weight="900" letter-spacing="-20">SAI</text>
-  <circle cx="457" cy="120" r="83" fill="#ED512F"/>
-  <circle class="motion" cx="479" cy="108" r="78" fill="#F5F0E7">
-    <animate attributeName="cx" values="479;461;479" dur="11s" repeatCount="indefinite"/>
-  </circle>
-  <text x="583" y="104" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">I am not very</text>
-  <text x="583" y="143" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">interested in</text>
-  <text x="583" y="182" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">making the</text>
-  <text x="583" y="221" fill="#FBF7EF" font-size="30" font-weight="820" letter-spacing="-0.8">expected thing.</text>
+  <text x="583" y="101" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">The idea is</text>
+  <text x="583" y="141" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">usually too</text>
+  <text x="583" y="181" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">ambitious.</text>
+  <text x="583" y="221" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">I start anyway.</text>
   <line x1="583" y1="257" x2="813" y2="257" stroke="#FBF7EF" opacity="0.30"/>
-  <text x="583" y="296" fill="#FBF7EF" font-size="17" font-weight="650">Sometimes that is productive.</text>
-  <text x="583" y="405" fill="#FBF7EF" opacity="0.72" font-size="11.5">It still has to work in the morning.</text>
+  <text x="583" y="296" fill="#FBF7EF" font-size="16.5" font-weight="650">It has worked just enough.</text>
+  <text x="583" y="405" fill="#FBF7EF" opacity="0.72" font-size="11">By morning, the good ideas have tests.</text>
   <rect x="32" y="432" width="145" height="4" fill="#ED512F"/>
 </svg>

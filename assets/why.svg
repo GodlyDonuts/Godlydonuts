@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 670" role="img" aria-labelledby="title desc">
   <title id="title">The pattern, so far</title>
-  <desc id="desc">Three habits behind Sai's work.</desc>
+  <desc id="desc">Three recurring habits behind Sai's work.</desc>
   <defs><style>
       .bg { fill: #090B16; }
       .surface { fill: #12172A; }
@@ -39,17 +39,17 @@
   <rect class="blue" x="30" y="120" width="786" height="158" rx="2"/>
   <text x="56" y="213" class="on-blue" opacity="0.48" font-size="92" font-weight="900">01</text>
   <text x="178" y="180" class="on-blue" font-size="31" font-weight="850" letter-spacing="-1">I try to make small models think twice.</text>
-  <text x="178" y="221" class="on-blue" opacity="0.78" font-size="17">Shohin adds a real revision step without buying the answer with scale.</text>
+  <text x="178" y="221" class="on-blue" opacity="0.80" font-size="17">Shohin gives them somewhere to revise, not just more tokens to spend.</text>
 
   <text x="56" y="385" class="orange" font-size="92" font-weight="900">02</text>
-  <text x="178" y="350" class="fg" font-size="31" font-weight="850" letter-spacing="-1">I end up below the abstraction.</text>
-  <text x="178" y="391" class="muted" font-size="17">When the library hides the interesting part, I start reading the source.</text>
+  <text x="178" y="350" class="fg" font-size="31" font-weight="850" letter-spacing="-1">Sooner or later, I read the source.</text>
+  <text x="178" y="391" class="muted" font-size="17">The API is useful until the result stops making sense.</text>
   <text x="178" y="426" class="fg" font-size="12" font-weight="720">PyTorch · TensorFlow · JAX</text>
   <line class="line" x1="30" y1="462" x2="816" y2="462"/>
 
   <rect class="orange" x="30" y="492" width="786" height="148" rx="2"/>
   <text x="56" y="588" class="on-orange" opacity="0.44" font-size="92" font-weight="900">03</text>
-  <text x="178" y="551" class="on-orange" font-size="31" font-weight="850" letter-spacing="-1">I build before I feel ready.</text>
-  <text x="178" y="592" class="on-orange" font-size="17">It is faster than waiting to feel qualified.</text>
+  <text x="178" y="551" class="on-orange" font-size="31" font-weight="850" letter-spacing="-1">I start before I know how.</text>
+  <text x="178" y="592" class="on-orange" font-size="17">The project usually teaches me the rest.</text>
   <text x="178" y="621" class="on-orange" font-size="12" font-weight="720">Porter · Sentinel · Crisis Averted</text>
 </svg>

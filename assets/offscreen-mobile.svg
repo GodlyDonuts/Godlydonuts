@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 760" role="img" aria-labelledby="title desc">
   <title id="title">Easy ways to derail me</title>
-  <desc id="desc">Rockets, the AI race, design, predictions, and project names.</desc>
+  <desc id="desc">Rockets, the AI race, design, predictions, project names, and lifting.</desc>
   <defs><style>
       .bg { fill: #090B16; }
       .surface { fill: #12172A; }
@@ -32,13 +32,71 @@
         .on-orange-stroke { stroke: #15131B; }
       }
       @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
-    </style></defs>
-  <rect class="bg" width="420" height="720"/>
-  <circle class="orange" cx="364" cy="82" r="92"/>
-  <circle class="bg" cx="386" cy="70" r="86"/>
+    </style>
+    <radialGradient id="offscreen-m-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0.00" stop-color="#FF6845" stop-opacity="0"/>
+      <stop offset="0.57" stop-color="#FF6845" stop-opacity="0"/>
+      <stop offset="0.67" stop-color="#FFF0C8" stop-opacity="0.98"/>
+      <stop offset="0.71" stop-color="#FFB45C" stop-opacity="0.92"/>
+      <stop offset="0.79" stop-color="#FF6845" stop-opacity="0.55"/>
+      <stop offset="1.00" stop-color="#FF6845" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="offscreen-m-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0" stop-color="#FFF8E8"/>
+      <stop offset="0.30" stop-color="#FFD28B"/>
+      <stop offset="0.66" stop-color="#FF6845"/>
+      <stop offset="1" stop-color="#B82E20"/>
+    </linearGradient>
+    <filter id="offscreen-m-blur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="offscreen-m-soft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter></defs>
+  <rect class="bg" width="420" height="760"/>
+  
+  <g transform="translate(365 80) scale(0.93182)">
+    <circle r="126" fill="url(#offscreen-m-halo)" opacity="0.96"/>
+    <circle r="103" fill="none" stroke="#FF6845" stroke-width="16" opacity="0.22" filter="url(#offscreen-m-blur)"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M-67 -75 C-91 -55 -103 -24 -102 6" stroke="#FFD28B" stroke-width="2.8" opacity="0.74"/>
+      <path d="M-82 48 C-66 81 -38 101 -6 106" stroke="#FF6845" stroke-width="3.8" opacity="0.72"/>
+      <path d="M28 102 C63 92 91 66 104 34" stroke="#FFB45C" stroke-width="2.6" opacity="0.78"/>
+      <path d="M78 -63 C99 -37 106 -8 102 18" stroke="#FFF0C8" stroke-width="2.2" opacity="0.75"/>
+      <path d="M-31 -105 C-19 -113 -6 -119 9 -120" stroke="#FF6845" stroke-width="2.1" opacity="0.66"/>
+    </g>
+    <g stroke="#FF6845" stroke-linecap="round" opacity="0.66">
+      <path d="M0 -101V-122" stroke-width="2.4"/>
+      <path d="M71 -72L87 -88" stroke-width="2.0"/>
+      <path d="M100 4L124 5" stroke-width="2.8"/>
+      <path d="M70 74L88 92" stroke-width="2.2"/>
+      <path d="M-3 101L-5 126" stroke-width="2.7"/>
+      <path d="M-73 72L-92 89" stroke-width="1.8"/>
+      <path d="M-101 -5L-126 -6" stroke-width="2.4"/>
+      <path d="M-72 -71L-91 -90" stroke-width="2.0"/>
+    </g>
+    <circle r="91" fill="none" stroke="url(#offscreen-m-rim)" stroke-width="6.5"/>
+    <circle cx="-3" cy="2" r="86" fill="#090B16"/>
+    <path d="M-62 -61 A87 87 0 0 1 74 -44" fill="none" stroke="#FFF6DE" stroke-width="1.4" opacity="0.48"/>
+    <g transform="translate(75 -43)">
+      <circle r="17" fill="#FFB45C" opacity="0.42" filter="url(#offscreen-m-blur)"/>
+      <circle r="7.2" fill="#FFF8E8" filter="url(#offscreen-m-soft)"/>
+      <circle r="3.3" fill="#FFFFFF"/>
+      <g stroke="#FFF6DE" stroke-linecap="round" opacity="0.88">
+        <path d="M-27 0H27" stroke-width="1.7"/>
+        <path d="M0 -27V27" stroke-width="1.7"/>
+        <path d="M-18 -18L18 18" stroke-width="1.0"/>
+        <path d="M18 -18L-18 18" stroke-width="1.0"/>
+      </g>
+    </g>
+    <circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.2" opacity="0.22">
+      <animate attributeName="r" values="106;114;106" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.12;0.30;0.12" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
   <text x="22" y="69" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">easy ways</text>
   <text x="22" y="116" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">to derail me</text>
-  <text x="22" y="157" class="muted" font-size="14">This list is not exhaustive.</text>
+  <text x="22" y="157" class="muted" font-size="14">Any one of these will do.</text>
 
   <text x="24" y="238" class="orange" font-size="13" font-weight="800">01</text>
   <text x="68" y="238" class="fg" font-size="23" font-weight="770">reusable rockets</text>
@@ -49,11 +107,13 @@
   <text x="68" y="391" class="fg" font-size="23" font-weight="770">whether the design has</text>
   <text x="68" y="420" class="fg" font-size="23" font-weight="770">enough aura</text>
   <text x="24" y="476" class="orange" font-size="13" font-weight="800">04</text>
-  <text x="68" y="476" class="fg" font-size="23" font-weight="770">a prediction I disagree with</text>
+  <text x="68" y="476" class="fg" font-size="23" font-weight="770">a prediction I think is wrong</text>
   <text x="24" y="544" class="orange" font-size="13" font-weight="800">05</text>
-  <text x="68" y="544" class="fg" font-size="23" font-weight="770">the name of the next project</text>
+  <text x="68" y="544" class="fg" font-size="23" font-weight="770">naming the next project</text>
+  <text x="24" y="612" class="orange" font-size="13" font-weight="800">06</text>
+  <text x="68" y="612" class="fg" font-size="23" font-weight="770">lifting, eventually</text>
 
-  <rect class="blue" x="18" y="625" width="384" height="70" rx="2"/>
-  <text x="32" y="656" class="on-blue" font-size="16" font-weight="700">I can turn almost any forecast into a debate.</text>
-  <text x="32" y="680" class="on-blue" opacity="0.7" font-size="12">This is not always a strength.</text>
+  <rect class="blue" x="18" y="670" width="384" height="66" rx="2"/>
+  <text x="32" y="699" class="on-blue" font-size="16" font-weight="700">I can turn almost any forecast into a debate.</text>
+  <text x="32" y="722" class="on-blue" opacity="0.7" font-size="12">Usually before anyone asks.</text>
 </svg>
