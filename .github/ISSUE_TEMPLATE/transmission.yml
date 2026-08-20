@@ -1,0 +1,37 @@
+name: Leave a transmission
+description: Send Sai a question, prediction, strange idea, or serious collaboration signal.
+title: "[transmission] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is not a support form. Bring a question with teeth, an idea you cannot leave alone, or a reason we should build something together.
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frequency
+      options:
+        - Question worth chasing
+        - Prediction worth debating
+        - Strange idea
+        - Collaboration signal
+    validations:
+      required: true
+
+  - type: textarea
+    id: signal
+    attributes:
+      label: Signal
+      description: What is the question, prediction, or idea?
+      placeholder: The thing I cannot stop thinking about is...
+    validations:
+      required: true
+
+  - type: textarea
+    id: stakes
+    attributes:
+      label: Why does it matter?
+      description: Give the idea teeth. What changes if it is true or possible?
+    validations:
+      required: true
