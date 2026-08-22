@@ -1,25 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 760" role="img" aria-label="Easy ways to derail me">
-<defs>
-<style>
-.bg{fill:#090B16}.fg{fill:#F5F0E8}.muted{fill:#A9A4B3}.blue{fill:#4D64FF}.orange{fill:#FF6845}.onblue{fill:#FBF7EF}text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}@media(prefers-color-scheme:light){.bg{fill:#F5F0E7}.fg{fill:#15131B}.muted{fill:#6E6876}.blue{fill:#2645FF}.orange{fill:#ED512F}}@media(prefers-reduced-motion:reduce){.motion{display:none}}
-</style>
-<radialGradient id="h"><stop offset=".54" stop-color="#FF6845" stop-opacity="0"/><stop offset=".67" stop-color="#FFF5D5"/><stop offset=".72" stop-color="#FFB45C" stop-opacity=".9"/><stop offset=".86" stop-color="#FF6845" stop-opacity=".18"/><stop offset="1" stop-color="#FF6845" stop-opacity="0"/></radialGradient>
-<linearGradient id="r" x2="1" y2="1"><stop stop-color="#FFF8E8"/><stop offset=".32" stop-color="#FFD28B"/><stop offset=".7" stop-color="#FF6845"/><stop offset="1" stop-color="#B82E20"/></linearGradient>
-<filter id="b" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
-</defs>
-<rect class="bg" width="420" height="760"/>
-<g transform="translate(365 80) scale(.93)">
-<circle r="126" fill="url(#h)"/>
-<circle class="motion" r="111" fill="none" stroke="#FFB45C" stroke-width="16" opacity=".14" filter="url(#b)"><animate attributeName="r" values="104;132;112;104" dur="6.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".06;.55;.18;.06" dur="6.8s" repeatCount="indefinite"/></circle>
-<g class="motion" fill="none" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="-14 0 0;15 0 0;-5 0 0;-14 0 0" dur="8.4s" repeatCount="indefinite"/><path d="M-82-72C-108-44-113-6-103 28" stroke="#FFF0C8" stroke-width="2"/><path d="M-94 35C-76 80-36 109 8 113" stroke="#FF6845" stroke-width="3"/><path d="M23 111C67 99 99 66 110 23" stroke="#FFD28B" stroke-width="2.4"/><path d="M63-86C98-58 112-18 106 20" stroke="#FFF8E8" stroke-width="1.7"/></g>
-<circle r="91" fill="none" stroke="url(#r)" stroke-width="7"/>
-<circle cx="-3" cy="2" r="86" fill="#080910"/>
-<circle class="motion" r="94" fill="none" stroke="#FFF8E8" stroke-width="3.3" stroke-linecap="round" stroke-dasharray="48 545" transform="rotate(-150)" opacity=".62"><animateTransform attributeName="transform" type="rotate" values="-160 0 0;-40 0 0;-105 0 0;-160 0 0" dur="6.8s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.2;5;3;2.2" dur="6.8s" repeatCount="indefinite"/></circle>
-<g class="motion"><animateTransform attributeName="transform" type="rotate" values="-78 0 0;38 0 0;-10 0 0;-78 0 0" dur="6.8s" repeatCount="indefinite"/><g transform="translate(75 -43)"><circle r="22" fill="#FFB45C" opacity=".38" filter="url(#b)"/><circle r="6" fill="#fff"><animate attributeName="r" values="3.8;8;5;3.8" dur="6.8s" repeatCount="indefinite"/></circle><path d="M-21 0H21M0-21V21" stroke="#FFF8E8" stroke-width="1.7"/></g></g>
-<circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.6"><animate attributeName="r" values="102;126;108;102" dur="6.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.62;.24;.08" dur="6.2s" repeatCount="indefinite"/></circle>
-</g>
-<text x="22" y="69" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">easy ways</text><text x="22" y="116" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">to derail me</text><text x="22" y="157" class="muted" font-size="14">Any one of these will do.</text>
-<g font-size="13" font-weight="800" class="orange"><text x="24" y="238">01</text><text x="24" y="306">02</text><text x="24" y="391">03</text><text x="24" y="476">04</text><text x="24" y="544">05</text><text x="24" y="612">06</text></g>
-<g class="fg" font-size="23" font-weight="770"><text x="68" y="238">reusable rockets</text><text x="68" y="306">who is actually winning</text><text x="68" y="335">the AI race</text><text x="68" y="391">whether the design has</text><text x="68" y="420">enough aura</text><text x="68" y="476">a prediction I think is wrong</text><text x="68" y="544">naming the next project</text><text x="68" y="612">lifting, eventually</text></g>
-<rect class="blue" x="18" y="670" width="384" height="66" rx="2"/><text x="32" y="699" class="onblue" font-size="16" font-weight="700">I can turn almost any forecast into a debate.</text><text x="32" y="722" class="onblue" opacity=".7" font-size="12">Usually before anyone asks.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 748" role="img" aria-label="Easy ways to derail me">
+  <defs>
+    <style>
+      .bg{fill:#090B16}.fg{fill:#F5F0E8}.muted{fill:#A9A4B3}.line{stroke:#2B324D}.blue{fill:#4D64FF}.orange{fill:#FF6845}.onblue{fill:#FBF7EF}
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;stroke:none}
+      @media(prefers-color-scheme:light){.bg{fill:#F5F0E7}.fg{fill:#15131B}.muted{fill:#6E6876}.line{stroke:#D2C9BC}.blue{fill:#2645FF}.orange{fill:#ED512F}}
+      @media(prefers-reduced-motion:reduce){.motion{display:none}}
+    </style>
+    <radialGradient id="h"><stop offset=".54" stop-color="#FF6845" stop-opacity="0"/><stop offset=".67" stop-color="#FFF5D5"/><stop offset=".72" stop-color="#FFB45C" stop-opacity=".9"/><stop offset=".86" stop-color="#FF6845" stop-opacity=".18"/><stop offset="1" stop-color="#FF6845" stop-opacity="0"/></radialGradient>
+    <linearGradient id="r" x2="1" y2="1"><stop stop-color="#FFF8E8"/><stop offset=".32" stop-color="#FFD28B"/><stop offset=".7" stop-color="#FF6845"/><stop offset="1" stop-color="#B82E20"/></linearGradient>
+    <filter id="b" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect class="bg" width="420" height="748"/>
+  <g transform="translate(365 80) scale(.93)">
+    <circle r="126" fill="url(#h)"/>
+    <circle class="motion" r="111" fill="none" stroke="#FFB45C" stroke-width="16" opacity=".14" filter="url(#b)"><animate attributeName="r" values="104;132;112;104" dur="6.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".06;.55;.18;.06" dur="6.8s" repeatCount="indefinite"/></circle>
+    <g class="motion" fill="none" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="-14 0 0;15 0 0;-5 0 0;-14 0 0" dur="8.4s" repeatCount="indefinite"/><path d="M-82-72C-108-44-113-6-103 28" stroke="#FFF0C8" stroke-width="2"/><path d="M-94 35C-76 80-36 109 8 113" stroke="#FF6845" stroke-width="3"/><path d="M23 111C67 99 99 66 110 23" stroke="#FFD28B" stroke-width="2.4"/><path d="M63-86C98-58 112-18 106 20" stroke="#FFF8E8" stroke-width="1.7"/></g>
+    <circle r="91" fill="none" stroke="url(#r)" stroke-width="7"/>
+    <circle cx="-3" cy="2" r="86" fill="#080910"/>
+    <circle class="motion" r="94" fill="none" stroke="#FFF8E8" stroke-width="3.3" stroke-linecap="round" stroke-dasharray="48 545" transform="rotate(-150)" opacity=".62"><animateTransform attributeName="transform" type="rotate" values="-160 0 0;-40 0 0;-105 0 0;-160 0 0" dur="6.8s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2.2;5;3;2.2" dur="6.8s" repeatCount="indefinite"/></circle>
+    <g class="motion"><animateTransform attributeName="transform" type="rotate" values="-78 0 0;38 0 0;-10 0 0;-78 0 0" dur="6.8s" repeatCount="indefinite"/><g transform="translate(75 -43)"><circle r="22" fill="#FFB45C" opacity=".38" filter="url(#b)"/><circle r="6" fill="#fff"><animate attributeName="r" values="3.8;8;5;3.8" dur="6.8s" repeatCount="indefinite"/></circle><path d="M-21 0H21M0-21V21" stroke="#FFF8E8" stroke-width="1.7"/></g></g>
+    <circle class="motion" r="110" fill="none" stroke="#FFD28B" stroke-width="1.6"><animate attributeName="r" values="102;126;108;102" dur="6.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.62;.24;.08" dur="6.2s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <text x="22" y="69" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">easy ways</text>
+  <text x="22" y="116" class="fg" font-size="43" font-weight="900" letter-spacing="-1.8">to derail me</text>
+  <text x="22" y="157" class="muted" font-size="14">Any one of these will do.</text>
+
+  <line class="line" x1="72" y1="204" x2="72" y2="620"/>
+  <g class="orange" font-size="13" font-weight="800" text-anchor="middle">
+    <text x="42" y="235">01</text>
+    <text x="42" y="298">02</text>
+    <text x="42" y="373">03</text>
+    <text x="42" y="448">04</text>
+    <text x="42" y="535">05</text>
+    <text x="42" y="603">06</text>
+  </g>
+  <g class="fg" font-size="22" font-weight="770">
+    <text x="94" y="235">reusable rockets</text>
+    <text x="94" y="298">who is actually winning</text>
+    <text x="94" y="325">the AI race</text>
+    <text x="94" y="373">whether the design has</text>
+    <text x="94" y="400">enough aura</text>
+    <text x="94" y="448">a prediction I think</text>
+    <text x="94" y="475">is wrong</text>
+    <text x="94" y="535">naming the next project</text>
+    <text x="94" y="603">lifting, eventually</text>
+  </g>
+
+  <rect class="blue" x="18" y="656" width="384" height="68" rx="2"/>
+  <text x="32" y="685" class="onblue" font-size="15.5" font-weight="700">I can turn almost any forecast into a debate.</text>
+  <text x="32" y="708" class="onblue" opacity=".7" font-size="12">Usually before anyone asks.</text>
 </svg>
