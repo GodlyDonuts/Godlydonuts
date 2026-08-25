@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900" role="img" aria-labelledby="title desc">
   <title id="title">Right now</title>
-  <desc id="desc">Sai's latest public change is in sai-initiative: Bind cross-cluster launches to verified Slurm configs. He is thinking about whether revision can be learned instead of prompted.</desc>
+  <desc id="desc">Sai's latest public change is in sai-initiative: Record completed foundation dedup boundary. He is thinking about whether revision can be learned instead of prompted.</desc>
   <defs>
     <style>
       .bg { fill: #090B16; }
@@ -43,8 +43,8 @@
   <text x="46" y="170" class="on-blue" font-size="15" font-weight="700">last thing I changed</text>
   <text id="repository" x="46" y="220" class="on-blue" font-size="32" font-weight="880" letter-spacing="-1">sai-initiative</text>
   <text id="commit" x="46" y="258" class="on-blue" font-size="18" font-weight="560">
-    <tspan x="46" dy="0">Bind cross-cluster launches to</tspan>
-    <tspan x="46" dy="25">verified Slurm configs</tspan>
+    <tspan x="46" dy="0">Record completed foundation</tspan>
+    <tspan x="46" dy="25">dedup boundary</tspan>
   </text>
   <text x="46" y="351" class="on-blue" opacity="0.65" font-size="11">updates itself from my public repos</text>
   <text x="26" y="437" class="orange" font-size="14" font-weight="750">currently stuck on</text>
