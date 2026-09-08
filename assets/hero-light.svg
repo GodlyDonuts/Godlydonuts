@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 470" role="img" aria-labelledby="title desc">
   <title id="title">Saicharan Ramineni</title>
-  <desc id="desc">Sai. The idea is usually too ambitious. He starts anyway.</desc>
+  <desc id="desc">Saicharan Ramineni. Machine learning systems: kernels, models, experiments, and open source.</desc>
   <defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; }
@@ -148,12 +148,12 @@
   </g>
 
   <text x="17" y="340" fill="#15131B" font-size="246" font-weight="900" letter-spacing="-20">SAI</text>
-  <text x="583" y="101" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">The idea is</text>
-  <text x="583" y="141" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">usually too</text>
-  <text x="583" y="181" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">ambitious.</text>
-  <text x="583" y="221" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">I start anyway.</text>
+  <text x="583" y="101" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">Kernels.</text>
+  <text x="583" y="141" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">Models.</text>
+  <text x="583" y="181" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">Experiments.</text>
+  <text x="583" y="221" fill="#FBF7EF" font-size="31" font-weight="820" letter-spacing="-0.9">Open source.</text>
   <line x1="583" y1="257" x2="813" y2="257" stroke="#FBF7EF" opacity="0.30"/>
-  <text x="583" y="296" fill="#FBF7EF" font-size="16.5" font-weight="650">It has worked just enough.</text>
-  <text x="583" y="405" fill="#FBF7EF" opacity="0.72" font-size="11">By morning, the good ideas have tests.</text>
+  <text x="583" y="296" fill="#FBF7EF" font-size="16.5" font-weight="650">Machine learning systems.</text>
+  <text x="583" y="405" fill="#FBF7EF" opacity="0.72" font-size="11">Theory, implementation, and measurement.</text>
   <rect x="32" y="432" width="145" height="4" fill="#ED512F"/>
 </svg>

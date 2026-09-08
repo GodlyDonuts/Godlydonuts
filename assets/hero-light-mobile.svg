@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 680" role="img" aria-labelledby="title desc">
   <title id="title">Saicharan Ramineni</title>
-  <desc id="desc">Sai. The idea is usually too ambitious. He starts anyway.</desc>
+  <desc id="desc">Saicharan Ramineni. Machine learning systems: kernels, models, experiments, and open source.</desc>
   <defs>
     <style>
       text { font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif; }
@@ -148,11 +148,11 @@
 
   <text x="13" y="225" fill="#15131B" font-size="164" font-weight="900" letter-spacing="-13">SAI</text>
   <rect x="0" y="310" width="420" height="370" fill="#2645FF"/>
-  <text x="24" y="365" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">The idea is</text>
-  <text x="24" y="413" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">usually too</text>
-  <text x="24" y="461" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">ambitious.</text>
-  <text x="24" y="509" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">I start anyway.</text>
+  <text x="24" y="365" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">Kernels.</text>
+  <text x="24" y="413" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">Models.</text>
+  <text x="24" y="461" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">Experiments.</text>
+  <text x="24" y="509" fill="#FBF7EF" font-size="38" font-weight="820" letter-spacing="-1.2">Open source.</text>
   <line x1="24" y1="548" x2="396" y2="548" stroke="#FBF7EF" opacity="0.28"/>
-  <text x="24" y="585" fill="#FBF7EF" font-size="16" font-weight="620">It has worked just enough.</text>
-  <text x="24" y="640" fill="#FBF7EF" opacity="0.72" font-size="12">By morning, the good ideas have tests.</text>
+  <text x="24" y="585" fill="#FBF7EF" font-size="16" font-weight="620">Machine learning systems.</text>
+  <text x="24" y="640" fill="#FBF7EF" opacity="0.72" font-size="12">Theory, implementation, and measurement.</text>
 </svg>
