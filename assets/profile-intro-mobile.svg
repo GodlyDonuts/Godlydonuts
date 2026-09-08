@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 132" role="img" aria-labelledby="title desc">
+  <title id="title">How I work</title>
+  <desc id="desc">I work through papers and source code by building and testing implementations. GPU kernels, small models, ML runtimes.</desc>
+  <defs><style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.bg { fill: #090B16; } .surface { fill: #12172A; }
+.fg { fill: #F5F0E8; } .muted { fill: #A9A4B3; }
+.line { stroke: #2B324D; } .blue { fill: #4D64FF; }
+.orange { fill: #FF6845; } .on-blue { fill: #FBF7EF; }
+.on-orange { fill: #15131B; } .fg-stroke { stroke: #F5F0E8; }
+@media (prefers-color-scheme: light) {
+ .bg { fill: #F5F0E7; } .surface { fill: #E9E2D7; }
+ .fg { fill: #15131B; } .muted { fill: #6E6876; }
+ .line { stroke: #D2C9BC; } .blue { fill: #2645FF; }
+ .orange { fill: #ED512F; } .fg-stroke { stroke: #15131B; }
+}
+@media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+</style></defs>
+  <rect class="bg" width="420" height="132"/>
+  <rect class="orange" x="22" y="26" width="4" height="75"/><text x="42" y="47" class="fg" font-size="17" font-weight="400" >I work through papers and source code</text>
+<text x="42" y="76" class="fg" font-size="17" font-weight="400" >by building and testing implementations.</text>
+<text x="42" y="105" class="fg" font-size="17" font-weight="400" >GPU kernels, small models, ML runtimes.</text>
+</svg>

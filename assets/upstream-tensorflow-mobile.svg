@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" role="img" aria-labelledby="title desc">
+  <title id="title">TensorFlow</title>
+  <desc id="desc">TensorFlow. SELU gradient precision for negative inputs. Numerical correctness Float32 and float64 regression coverage in both graph and eager execution.</desc>
+  <defs><style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.bg { fill: #090B16; } .surface { fill: #12172A; }
+.fg { fill: #F5F0E8; } .muted { fill: #A9A4B3; }
+.line { stroke: #2B324D; } .blue { fill: #4D64FF; }
+.orange { fill: #FF6845; } .on-blue { fill: #FBF7EF; }
+.on-orange { fill: #15131B; } .fg-stroke { stroke: #F5F0E8; }
+@media (prefers-color-scheme: light) {
+ .bg { fill: #F5F0E7; } .surface { fill: #E9E2D7; }
+ .fg { fill: #15131B; } .muted { fill: #6E6876; }
+ .line { stroke: #D2C9BC; } .blue { fill: #2645FF; }
+ .orange { fill: #ED512F; } .fg-stroke { stroke: #15131B; }
+}
+@media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+</style></defs>
+  <rect class="bg" width="420" height="340"/>
+  <rect class="surface" width="420" height="134"/><text x="24" y="29" class="fg" font-size="10.5" font-weight="700" letter-spacing="1.2">MERGED UPSTREAM</text><text x="22" y="102" class="fg" font-size="58" font-weight="880" letter-spacing="-2.5">TensorFlow</text><path d="M370 24h22v22m0 -22l-22 22" fill="none" stroke="#FF6845" stroke-width="2"/><text x="24" y="177" class="fg" font-size="18" font-weight="400" >SELU gradient precision</text>
+<text x="24" y="206" class="fg" font-size="18" font-weight="400" >for negative inputs.</text>
+<text x="24" y="235" class="fg" font-size="18" font-weight="400" >Float32 and float64 regressions</text>
+<text x="24" y="264" class="fg" font-size="18" font-weight="400" >cover graph and eager execution.</text>
+<text x="24" y="293" class="fg" font-size="18" font-weight="400" >Merged into TensorFlow.</text>
+</svg>

@@ -61,6 +61,7 @@ def fetch_trace(user: str) -> Trace:
         repo
         for repo in repos
         if isinstance(repo, dict)
+        and not repo.get("private")
         and not repo.get("fork")
         and not repo.get("archived")
         and str(repo.get("name", "")).lower() not in PROFILE_REPOS
