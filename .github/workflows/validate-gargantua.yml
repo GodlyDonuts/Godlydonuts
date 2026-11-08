@@ -1,0 +1,57 @@
+name: Validate real Gargantua profile preview
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "assets/gargantua-loop.webp"
+      - "assets/gargantua-poster.webp"
+      - "scripts/build_profile_art.py"
+      - ".github/workflows/validate-gargantua.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify real render media is intact and appropriately sized
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+
+          expected = {
+              "assets/gargantua-loop.webp": ("9a9786091d806239d76f006717864c7884d41b666a799e893befb3e1e81b441f", 1385442),
+              "assets/gargantua-poster.webp": ("e11417384ab4afd84e930eb86094ec57df7846e24886c40969f2d830a769e735", 30742),
+          }
+          for name, (digest, bytes_expected) in expected.items():
+              b = Path(name).read_bytes()
+              assert b.startswith(b"RIFF") and b[8:12] == b"WEBP", name
+              assert hashlib.sha256(b).hexdigest() == digest, name
+              assert len(b) == bytes_expected, name
+              assert len(b) < 5 * 1024 * 1024, name
+          a = Path("assets/gargantua-loop.webp").read_bytes()
+          assert b"ANIM" in a and b"ANMF" in a, "preview is not animated"
+          readme = Path("README.md").read_text()
+          assert 'srcset="assets/gargantua-poster.webp"' in readme
+          assert 'src="assets/gargantua-loop.webp"' in readme
+          assert 'prefers-reduced-motion: reduce' in readme
+          assert 'https://saicharanramineni.com/' in readme
+          print("Verified animation, poster, hashes and README references.")
+          PY
+
+      - name: Check generator and committed README agree
+        run: |
+          python3 scripts/build_profile_art.py
+          git diff --exit-code -- README.md
+          git diff --check
+
+      - name: Verify animated frame count and duration
+        run: |
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,nb_frames,duration -of json assets/gargantua-loop.webp
