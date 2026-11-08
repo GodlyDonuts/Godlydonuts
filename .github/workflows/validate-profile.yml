@@ -6,6 +6,7 @@ on:
       - "README.md"
       - "assets/**"
       - "scripts/build_profile_art.py"
+      - "scripts/render_profile.py"
       - ".github/workflows/validate-profile.yml"
   workflow_dispatch:
 
@@ -28,6 +29,21 @@ jobs:
             git diff -- README.md
             exit 1
           fi
+
+      - name: Check the public trace renderer offline
+        run: |
+          python3 -m py_compile scripts/build_profile_art.py scripts/render_profile.py
+          cp -R assets "${RUNNER_TEMP}/profile-assets"
+          python3 scripts/render_profile.py --offline --output "${RUNNER_TEMP}/profile-assets"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from xml.etree import ElementTree
+          assets = Path(os.environ["RUNNER_TEMP"]) / "profile-assets"
+          for name in ("activity-strip.svg", "activity-strip-mobile.svg", "now.svg", "now-mobile.svg"):
+              ElementTree.parse(assets / name)
+          print("The periodic snapshot renderer produced valid SVGs.")
+          PY
 
       - name: Check every SVG and local README image
         run: |
