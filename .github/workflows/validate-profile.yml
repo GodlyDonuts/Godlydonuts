@@ -1,0 +1,54 @@
+name: Validate profile artwork
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "assets/**"
+      - "scripts/build_profile_art.py"
+      - ".github/workflows/validate-profile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Ensure README matches its generator
+        run: |
+          python3 scripts/build_profile_art.py
+          if ! git diff --quiet -- README.md; then
+            echo "::error::README.md is out of sync with scripts/build_profile_art.py"
+            git diff -- README.md
+            exit 1
+          fi
+
+      - name: Check every SVG and local README image
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          from xml.etree import ElementTree
+
+          readme = Path("README.md").read_text(encoding="utf-8")
+          image_paths = re.findall(r'(?:src|srcset)="(assets/[^"]+)"', readme)
+          if not image_paths:
+              raise SystemExit("README has no images")
+          missing = sorted({name for name in image_paths if not Path(name).is_file()})
+          if missing:
+              raise SystemExit(f"Missing README assets: {missing}")
+          for path in sorted(Path("assets").glob("*.svg")):
+              root = ElementTree.parse(path).getroot()
+              if not root.tag.endswith("svg"):
+                  raise SystemExit(f"Not SVG: {path}")
+          if "<script" in readme.lower():
+              raise SystemExit("Do not embed executable scripts in the profile")
+          print(f"Validated {len(image_paths)} image references and all local SVGs.")
+          PY
+          git diff --check
