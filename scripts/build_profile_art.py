@@ -169,6 +169,11 @@ def build_readme():
 </p>''',
         picture('profile-intro', 'I work through papers and framework source by building and testing implementations. GPU kernels, small models, and the runtimes beneath them.'),
     ]
+    chunks.append(linked(
+        'activity-strip',
+        'Latest public change from a periodically refreshed GitHub snapshot.',
+        'https://github.com/GodlyDonuts?tab=repositories&sort=updated',
+    ))
     # The workbench sits above project cards and remains accessible as real text.
     # The SVGs are intentionally kept as authored source files, like the hero.
     chunks.extend([
