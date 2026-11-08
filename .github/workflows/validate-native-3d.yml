@@ -1,0 +1,43 @@
+name: Validate native 3D profile experiment
+
+on:
+  pull_request:
+    paths:
+      - "scripts/generate-3d-observatory.mjs"
+      - "models/sai-observatory.stl"
+      - "experiments/native-3d-observatory.md"
+      - ".github/workflows/validate-native-3d.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Verify generator and regenerate identical artifacts
+        run: |
+          node --check scripts/generate-3d-observatory.mjs
+          node scripts/generate-3d-observatory.mjs
+          git diff --exit-code -- models/sai-observatory.stl experiments/native-3d-observatory.md
+
+      - name: Verify STL block, facet budget, and GitHub README limits
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          stl=Path("models/sai-observatory.stl").read_text()
+          md=Path("experiments/native-3d-observatory.md").read_text()
+          assert stl.startswith("solid sai_observatory\n")
+          assert stl.rstrip().endswith("endsolid sai_observatory")
+          assert len(re.findall(r"^ facet normal ", stl,flags=re.M)) > 100
+          assert md.count("\x60\x60\x60stl") == 1
+          assert "\x60\x60\x60stl\n"+stl+"\x60\x60\x60" in md
+          assert len(md.encode()) < 500 * 1024, "GitHub README exceeds 500 KiB"
+          print(f"Valid native STL: {len(stl):,} bytes embedded in {len(md):,} byte Markdown.")
+          PY
