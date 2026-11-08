@@ -52,6 +52,24 @@ jobs:
           git diff --exit-code -- README.md
           git diff --check
 
-      - name: Verify animated frame count and duration
+      - name: Verify frame count and loop duration without FFmpeg
         run: |
-          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,nb_frames,duration -of json assets/gargantua-loop.webp
+          python3 - <<'PY'
+          from pathlib import Path
+
+          data = Path("assets/gargantua-loop.webp").read_bytes()
+          position, frames, duration_ms = 12, 0, 0
+          while position + 8 <= len(data):
+              fourcc = data[position:position + 4]
+              size = int.from_bytes(data[position + 4:position + 8], "little")
+              start = position + 8
+              if fourcc == b"ANMF":
+                  assert size >= 16, "truncated animation frame header"
+                  frames += 1
+                  duration_ms += int.from_bytes(data[start + 12:start + 15], "little")
+              position = start + size + (size & 1)
+          assert 60 <= frames <= 100, f"Unexpected animated frame count: {frames}"
+          assert 7500 <= duration_ms <= 8300, f"Unexpected duration: {duration_ms}ms"
+          assert position == len(data), "WebP container size mismatch"
+          print(f"Validated {frames} real animation frames, duration {duration_ms}ms")
+          PY
