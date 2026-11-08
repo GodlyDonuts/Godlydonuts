@@ -1,5 +1,6 @@
 <!-- SVG artwork and this README are maintained by scripts/build_profile_art.py. -->
 <p align="center">
+  <a href="https://saicharanramineni.com/" title="Open the interactive black-hole portfolio">
   <picture>
     <source media="(max-width: 760px) and (prefers-color-scheme: dark)" srcset="assets/hero-dark-mobile.svg" />
     <source media="(max-width: 760px) and (prefers-color-scheme: light)" srcset="assets/hero-light-mobile.svg" />
@@ -7,12 +8,24 @@
     <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg" />
     <img src="assets/hero-light.svg" width="100%" alt="Sai — Saicharan Ramineni. Computer Science at UCF, Orlando." />
   </picture>
+  </a>
 </p>
 
 <picture>
     <source media="(max-width: 760px)" srcset="assets/profile-intro-mobile.svg" />
     <img src="assets/profile-intro.svg" width="100%" alt="I work through papers and framework source by building and testing implementations. GPU kernels, small models, and the runtimes beneath them." />
   </picture>
+
+<p align="center">
+  <a href="https://saicharanramineni.com/" title="Open the interactive black-hole experience">
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="assets/gargantua-poster.webp" type="image/webp" />
+      <img src="assets/gargantua-loop.webp" width="100%" alt="Gargantua: an eight-second animated excerpt of my original Blender black-hole render, with warped luminous accretion light around the dark center. Open the interactive WebGL portfolio." />
+    </picture>
+  </a>
+</p>
+
+<p align="center"><strong>GARGANTUA</strong> · My original Blender render, in motion. <a href="https://saicharanramineni.com/">Enter the interactive portfolio</a>.</p>
 
 <a href="https://saicharanramineni.com/projects"><picture>
     <source media="(max-width: 760px)" srcset="assets/heading-work-mobile.svg" />
