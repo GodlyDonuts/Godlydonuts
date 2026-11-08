@@ -168,7 +168,6 @@ def build_readme():
   </picture>
 </p>''',
         picture('profile-intro', 'I work through papers and framework source by building and testing implementations. GPU kernels, small models, and the runtimes beneath them.'),
-        linked('heading-work', 'Selected work. Browse all projects.', 'https://saicharanramineni.com/projects'),
     ]
     # The workbench sits above project cards and remains accessible as real text.
     # The SVGs are intentionally kept as authored source files, like the hero.
@@ -177,6 +176,7 @@ def build_readme():
         picture('experiment-console', "An animated research console: a backward gradient, a model revising a draft, and tokens routing to experts. Schematic diagrams, not benchmark results."),
         "<details>\n<summary><strong>01 / What does a backward pass actually do?</strong></summary>\n\n[Psi](https://github.com/GodlyDonuts/psi) is my language-model training stack: custom autograd, gradient checks, and Metal/CUDA kernels. I wanted to understand the mechanics, not just call the API.\n\n</details>\n\n<details>\n<summary><strong>02 / Can a small model learn to revise?</strong></summary>\n\n[Shohin](https://github.com/GodlyDonuts/shohin-ettr) tests revision as part of the model's behavior. Experiments, controls, and negative results matter more to me than a polished demo.\n\n</details>\n\n<details>\n<summary><strong>03 / Where does MoE inference waste time?</strong></summary>\n\nI've been studying expert routing, queueing, and memory movement in GPU inference. The animation above is an illustration of the system, **not a benchmark or a claimed speedup**. This is an active area of investigation.\n\n</details>\n\n*Each animation is schematic. For reproducible claims, follow the project and upstream source links below.*",
     ])
+    chunks.append(linked('heading-work', 'Selected work. Browse all projects.', 'https://saicharanramineni.com/projects'))
     for item in CARDS:
         if item['id'] == 'upstream-pytorch':
             chunks.append(linked('heading-upstream', 'Upstream contributions. Open the full record.', 'https://saicharanramineni.com/open-source'))
