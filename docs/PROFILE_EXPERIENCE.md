@@ -12,6 +12,10 @@ GitHub profile READMEs render GitHub Flavored Markdown and a safe subset of HTML
 - Desktop and mobile have separate SVG viewBoxes. Images have accessible alternatives; meaningful text is also present in the document.
 - The black-hole hero is a recognizable part of the visual identity; the experiments are an explanation of the work beneath it.
 
+## Periodic public activity
+
+The small activity strip is now placed just below the hero and intro. Its date is the commit observation time, **not** a promise of live telemetry. `scripts/render_profile.py` updates the strip and the existing expanded "right now" panel together. The main-branch workflow performs the refresh at its configured schedule or when the renderer changes.
+
 ## The first executable slice
 
 **The workbench** is one self-contained animated SVG with three independently understandable diagrams:
