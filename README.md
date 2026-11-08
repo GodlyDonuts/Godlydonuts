@@ -1,5 +1,6 @@
 <!-- SVG artwork and this README are maintained by scripts/build_profile_art.py. -->
 <p align="center">
+  <a href="https://saicharanramineni.com/" title="Open the interactive black-hole portfolio">
   <picture>
     <source media="(max-width: 760px) and (prefers-color-scheme: dark)" srcset="assets/hero-dark-mobile.svg" />
     <source media="(max-width: 760px) and (prefers-color-scheme: light)" srcset="assets/hero-light-mobile.svg" />
@@ -7,6 +8,7 @@
     <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg" />
     <img src="assets/hero-light.svg" width="100%" alt="Sai — Saicharan Ramineni. Computer Science at UCF, Orlando." />
   </picture>
+  </a>
 </p>
 
 <picture>
