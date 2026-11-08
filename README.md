@@ -14,6 +14,11 @@
     <img src="assets/profile-intro.svg" width="100%" alt="I work through papers and framework source by building and testing implementations. GPU kernels, small models, and the runtimes beneath them." />
   </picture>
 
+<a href="https://github.com/GodlyDonuts?tab=repositories&amp;sort=updated"><picture>
+    <source media="(max-width: 760px)" srcset="assets/activity-strip-mobile.svg" />
+    <img src="assets/activity-strip.svg" width="100%" alt="Latest public change from a periodically refreshed GitHub snapshot." />
+  </picture></a>
+
 ## inside the experiments
 
 I learn by rebuilding things, testing the assumptions, and seeing where they break. Three problems I keep coming back to:
