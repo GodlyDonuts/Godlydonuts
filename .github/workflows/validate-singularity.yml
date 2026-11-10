@@ -1,13 +1,26 @@
 name: Validate profile singularity
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "assets/singularity*"
+      - "scripts/build_singularity.py"
+      - "scripts/build_profile_art.py"
+      - "scripts/validate_singularity.py"
+      - "scripts/requirements-art.txt"
+      - "assets/fonts/**"
+      - ".github/workflows/validate-singularity.yml"
   pull_request:
     paths:
       - "README.md"
-      - "assets/singularity.svg"
-      - "assets/singularity-mobile.svg"
+      - "assets/singularity*"
       - "scripts/build_singularity.py"
       - "scripts/build_profile_art.py"
+      - "scripts/validate_singularity.py"
+      - "scripts/requirements-art.txt"
+      - "assets/fonts/**"
       - ".github/workflows/validate-singularity.yml"
   workflow_dispatch:
 
@@ -22,50 +35,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
-      - name: Check generator syntax and reproducibility
+      - name: Install image validation dependencies
+        run: python3 -m pip install -r scripts/requirements-art.txt
+
+      - name: Check source syntax and lightweight README generation
         run: |
-          python3 -m py_compile scripts/build_singularity.py scripts/build_profile_art.py
+          python3 -m py_compile scripts/build_singularity.py scripts/build_profile_art.py scripts/validate_singularity.py
           python3 scripts/build_profile_art.py
-          git diff --exit-code -- README.md assets/singularity.svg assets/singularity-mobile.svg
-          python3 scripts/build_profile_art.py
-          git diff --exit-code -- README.md assets/singularity.svg assets/singularity-mobile.svg
+          git diff --exit-code -- README.md assets
 
-      - name: Validate animation, accessibility and asset budget
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          from xml.etree import ElementTree as ET
+      - name: Decode and validate delivered media
+        run: python3 scripts/validate_singularity.py --json
 
-          readme = Path("README.md").read_text()
-          assert len(readme.encode()) < 500_000
-          for term in ["singularity.svg","singularity-mobile.svg","prefers-reduced-motion"]:
-              # Media preference belongs in the SVG, rather than README markup.
-              if term != "prefers-reduced-motion":
-                  assert term in readme
-          assert "https://github.com/GodlyDonuts/psi" in readme
-          assert "https://github.com/GodlyDonuts/shohin-ettr" in readme
-          assert "https://saicharanramineni.com/" in readme
-
-          ns = {"s": "http://www.w3.org/2000/svg"}
-          for path in ("assets/singularity.svg","assets/singularity-mobile.svg"):
-              body = Path(path).read_text()
-              root = ET.fromstring(body)
-              assert root.tag == "{http://www.w3.org/2000/svg}svg"
-              assert len(body.encode()) < 350_000
-              assert root.find("s:title", ns) is not None
-              assert root.find("s:desc", ns) is not None
-              assert not root.findall(".//s:script",ns)
-              assert "prefers-reduced-motion" in body
-              assert "class=\"reduced-only\"" in body
-              assert 'href="#profile-header"' in body
-              assert 'href="#card-psi"' in body
-              motions = len(root.findall(".//s:animateMotion",ns))
-              transforms = len(root.findall(".//s:animateTransform",ns))
-              assert motions >= 100, (path,motions)
-              assert transforms >= 20, (path,transforms)
-              print(f"{path}: {len(body):,} chars, {motions} moving objects, {transforms} transforms")
-          PY
-
-      - name: Check whitespace and file paths
+      - name: Check whitespace
         run: |
           git diff --check

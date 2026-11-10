@@ -1,327 +1,489 @@
 #!/usr/bin/env python3
-"""Generate GitHub-safe, self-contained, animated profile-collapse SVGs.
+"""Render the profile's film once, so readers never run a particle renderer.
 
-Pure Python, no external rendering services or dependencies. Motion is SMIL,
-not JavaScript. The whole "shattered README" is an optical illusion INSIDE
-one image. GitHub HTML outside the image cannot be manipulated by an SVG.
+Deterministic original motion design. Pillow + NumPy, bundled open fonts,
+no browser, network, GPU, JavaScript, live filters or remote image services.
+The same pieces form the profile, fracture, orbit and return. WebP carries
+only the finished frames. Run --preview for the storyboard without encoding.
 """
 from __future__ import annotations
 
-from html import escape
-from math import cos, sin, pi, hypot
+import argparse
+import hashlib
+import json
+import math
+import os
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from random import Random
 
+import numpy as np
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont
+
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "assets"
-DURATION = 32
-COLORS = ["#F5F0E8", "#FF8565", "#A3ACFF", "#E3BD9E", "#7D9EBC"]
+ASSETS = ROOT / 'assets'
+FONTS = ASSETS / 'fonts'
+DURATION = 18
+FPS = 30
+PALETTE = {'paper': '#ede9e0', 'muted': '#87909c', 'dim': '#566270',
+           'gold': '#d9af7a', 'cold': '#a6c3dc', 'surface': '#10151c'}
 
 
-def e(t):
-    return escape(str(t), quote=True)
+def clamp(x, lo=0.0, hi=1.0):
+    return max(lo, min(hi, x))
 
 
-def opacity_timing(start: float, end: float, fade=0.35):
-    # One looping animation timeline, restoring the clean state before restart.
-    times = [0, max(0,start-.02)/DURATION, start/DURATION,
-             min(DURATION,end)/DURATION, min(DURATION,end+fade)/DURATION,
-             1]
-    return (';'.join(f'{v:.5f}' for v in times), '0;0;1;1;0;0')
+def smooth(x):
+    x = clamp(x)
+    return x * x * (3 - 2 * x)
 
 
-def animate_opacity(start, end, fade=.35):
-    kt, values = opacity_timing(start, end, fade)
-    return f'<animate attributeName="opacity" values="{values}" keyTimes="{kt}" dur="{DURATION}s" calcMode="linear" repeatCount="indefinite"/>'
+def smoother(x):
+    x = clamp(x)
+    return x * x * x * (x * (6 * x - 15) + 10)
 
 
-def profile_card(key,x,y,w,h,accent,number,title,line1,line2,foot):
-    # The information is real; only the simulated UI is subject to gravity.
-    return f'''<g id="card-{key}">
-      <rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#111724" stroke="#394258" stroke-width="1.1"/>
-      <rect x="{x}" y="{y}" width="{w}" height="5" rx="2" fill="{accent}"/>
-      <text x="{x+22}" y="{y+32}" fill="{accent}" font-size="12" font-weight="760" letter-spacing="1.7">{number}</text>
-      <text x="{x+22}" y="{y+84}" fill="#F5F0E8" font-size="47" font-weight="850" letter-spacing="-2.1">{e(title)}</text>
-      <text x="{x+22}" y="{y+112}" fill="#B2B7C5" font-size="15">{e(line1)}</text>
-      <text x="{x+22}" y="{y+135}" fill="#8B93A5" font-size="14">{e(line2)}</text>
-      <text x="{x+22}" y="{y+h-14}" fill="{accent}" opacity=".75" font-size="10" font-weight="650" letter-spacing="1.25">{e(foot)}</text>
-      <path d="M{x+w-34} {y+26}h13v13m0 -13l-13 13" fill="none" stroke="{accent}" stroke-width="1.8" opacity=".8"/>
-    </g>'''
+def rgb(col):
+    return tuple(bytes.fromhex(col.lstrip('#')))
 
 
-def mobile_card(key,x,y,w,h,accent,number,title,line1,line2,foot):
-    return f'''<g id="card-{key}">
-      <rect x="{x}" y="{y}" width="{w}" height="{h}" rx="7" fill="#111724" stroke="#394258" stroke-width="1"/>
-      <rect x="{x}" y="{y}" width="{w}" height="4" rx="2" fill="{accent}"/>
-      <text x="{x+16}" y="{y+24}" fill="{accent}" font-size="10" font-weight="750" letter-spacing="1.4">{number}</text>
-      <text x="{x+16}" y="{y+65}" fill="#F5F0E8" font-size="35" font-weight="850" letter-spacing="-1.5">{e(title)}</text>
-      <text x="{x+16}" y="{y+88}" fill="#B2B7C5" font-size="12">{e(line1)}</text>
-      <text x="{x+16}" y="{y+104}" fill="#8B93A5" font-size="12">{e(line2)}</text>
-      <text x="{x+w-16}" y="{y+h-14}" text-anchor="end" fill="{accent}" font-size="9" letter-spacing="1">{e(foot)}</text>
-    </g>'''
+@lru_cache(maxsize=128)
+def font(size, face='regular'):
+    name = {'bold': 'DejaVuSans-Bold.ttf', 'regular': 'DejaVuSans-ExtraLight.ttf',
+            'mono': 'DejaVuSansMono.ttf'}[face]
+    return ImageFont.truetype(str(FONTS / name), round(size))
 
 
-def profile_header(mobile):
-    if mobile:
-        return '''<g id="profile-header">
-          <text x="20" y="39" fill="#A4A7BA" font-size="10.5" letter-spacing="1.6" font-weight="760">SAICHARAN RAMINENI</text>
-          <path d="M20 54H412" stroke="#586275" stroke-width="1"/>
-          <text x="14" y="166" fill="#F5F0E8" font-size="133" font-weight="900" letter-spacing="-13">SAI</text>
-          <rect x="23" y="180" width="64" height="4" fill="#FF7452"/>
-          <text x="23" y="211" fill="#F5F0E8" font-size="17" font-weight="720">I build things to understand them.</text>
-          <text x="23" y="228" fill="#97A0B5" font-size="11.5">GPU kernels · small models · ML runtimes</text>
-          </g>'''
-    return '''<g id="profile-header">
-      <text x="54" y="48" fill="#A4A7BA" font-size="12" letter-spacing="2.1" font-weight="760">SAICHARAN RAMINENI / GITHUB</text>
-      <text x="970" y="48" text-anchor="end" fill="#A4A7BA" font-size="11" letter-spacing="1.7" font-weight="700">BUILD · MEASURE · REBUILD</text>
-      <path d="M52 63H972" stroke="#374155" stroke-width="1"/>
-      <text x="34" y="219" fill="#F5F0E8" font-size="173" font-weight="900" letter-spacing="-17">SAI</text>
-      <rect x="54" y="229" width="142" height="5" fill="#FF7452"/>
-      <text x="455" y="158" fill="#F5F0E8" font-size="30" font-weight="710" letter-spacing="-.8">I build things to understand them.</text>
-      <text x="457" y="188" fill="#A4ADBD" font-size="16">GPU kernels, small models, and the systems beneath them.</text>
-      <text x="457" y="220" fill="#FF8D6E" font-size="12" font-weight="700" letter-spacing="1.8">EXPERIMENTS / SOURCE / UPSTREAM</text>
-      </g>'''
-
-
-def card_setup(mobile):
-    if mobile:
-        boxes = [
-            ("psi",20,248,392,132,"#667BFF","01 / CODE + EXPERIMENTS","Psi","Custom autograd and training stack","C++ · Metal · CUDA","OPEN SOURCE"),
-            ("shohin",20,392,392,132,"#F48B65","02 / RESEARCH","Shohin","Models that revise their drafts","Controls · tests · negative results","RESEARCH LOG"),
-            ("systems",20,536,392,132,"#9BA7C8","03 / SYSTEMS","GPU / MoE","Routing, memory movement, queues","Measure first, optimize next","ACTIVE RESEARCH"),
-            ("upstream",20,680,392,132,"#E5C19E","04 / UPSTREAM","Frameworks","PyTorch · TensorFlow · JAX","Actual fixes merged upstream","CONTRIBUTIONS"),
-        ]
-        maker=mobile_card
+def label_sprite(text, size, color, face='regular', spacing=0):
+    """Typeset at 2x, keeping text antialiased through rotation and compression."""
+    f = font(size * 2, face)
+    boxes = [f.getbbox(c) for c in text] if spacing else [f.getbbox(text)]
+    if spacing:
+        width = sum(f.getlength(c) + spacing * 2 for c in text) - spacing * 2
     else:
-        boxes = [
-            ("psi",52,275,435,168,"#667BFF","01 / CODE + EXPERIMENTS","Psi","Custom autograd and training stack","C++ · Metal · CUDA","SOURCE / BENCHMARKS"),
-            ("shohin",505,275,467,168,"#F48B65","02 / RESEARCH","Shohin","Small models learning to revise","Matched controls / negative experiments","RESEARCH + RESULTS"),
-            ("systems",52,464,435,168,"#9BA7C8","03 / SYSTEMS","GPU / MoE","Expert routing + queueing","GPU memory movement and runtimes","ACTIVE RESEARCH"),
-            ("upstream",505,464,467,168,"#E5C19E","04 / UPSTREAM","Frameworks","PyTorch · TensorFlow · JAX","Numerical correctness and GPU runtime","MERGED / UPSTREAM"),
-        ]
-        maker=profile_card
-    return [(box, maker(*box)) for box in boxes]
+        width = f.getlength(text)
+    top = min(b[1] for b in boxes)
+    bottom = max(b[3] for b in boxes)
+    im = Image.new('RGBA', (math.ceil(width) + 8, bottom - top + 8))
+    d = ImageDraw.Draw(im)
+    if spacing:
+        x = 4
+        for c in text:
+            d.text((x, 4 - top), c, fill=color, font=f)
+            x += f.getlength(c) + spacing * 2
+    else:
+        d.text((4, 4 - top), text, fill=color, font=f)
+    return im.resize((math.ceil(im.width / 2), math.ceil(im.height / 2)), Image.Resampling.LANCZOS)
 
 
-def fracture_piece(tag, cid, x,y, w,h, cx,cy, rng, i, total):
-    # Clip an ACTUAL copy of the original panel. It is that panel, not a fake tag,
-    # that is physically shredded and pulled into the center.
-    pcx=x+w/2; pcy=y+h/2
-    dx=cx-pcx+rng.uniform(-12,12)
-    dy=cy-pcy+rng.uniform(-12,12)
-    angle=rng.uniform(-200,210)
-    start=3.25+rng.random()*1.25+0.20*(i%3)
-    end=7.2+rng.random()*1.5
-    # An inward corkscrew path: initial repulsion, then shearing capture.
-    tw=1 if i%2 else -1
-    perp=(-dy/(hypot(dx,dy)+1), dx/(hypot(dx,dy)+1))
-    bend= (30+rng.random()*80)*tw
-    c1x=dx*.10+perp[0]*bend
-    c1y=dy*.10+perp[1]*bend
-    c2x=dx*.74+perp[0]*bend*1.4
-    c2y=dy*.74+perp[1]*bend*1.4
-    path=f'M0 0 C{c1x:.1f} {c1y:.1f},{c2x:.1f} {c2y:.1f},{dx:.1f} {dy:.1f}'
-    t0=max(0,start-.05)/DURATION;t1=start/DURATION;t2=end/DURATION;t3=min(DURATION,end+.3)/DURATION
-    k=f'0;{t0:.5f};{t1:.5f};{t2:.5f};{t3:.5f};1'
-    visible=f'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{k}" dur="{DURATION}s" repeatCount="indefinite"/>'
-    # SMIL keyPoints repeat the beginning and end of the path to match the global loop.
-    # Geometry resides in user-space clip paths, transformed in unison with its copy.
-    move=f'<animateMotion path="{path}" keyPoints="0;0;0;1;1;1" keyTimes="{k}" calcMode="linear" dur="{DURATION}s" repeatCount="indefinite"/>'
-    sk=f'0;{t0:.5f};{t1:.5f};{t2:.5f};{t3:.5f};1'
-    # Distortion around the tile center, rather than the top-left corner of the document.
-    squash=f'<animateTransform attributeName="transform" type="scale" values="1 1;1 1;1 1;2.3 .19;.01 .01;1 1" keyTimes="{sk}" dur="{DURATION}s" repeatCount="indefinite"/>'
-    twist=f'<animateTransform attributeName="transform" type="rotate" values="0;0;0;{angle:.1f};{angle*2:.1f};0" keyTimes="{sk}" dur="{DURATION}s" repeatCount="indefinite"/>'
-    return f'''<g class="shard" opacity="0">{visible}{move}
-       <g transform="translate({pcx:.2f} {pcy:.2f})"><g>{twist}<g>{squash}
-       <g transform="translate({-pcx:.2f} {-pcy:.2f})" clip-path="url(#{tag})"><use href="#card-{cid}"/></g>
-       </g></g></g></g>'''
+@dataclass
+class Piece:
+    sprite: Image.Image
+    x: float
+    y: float
+    kind: str
+    keep: bool
+    phase: float
+    start: float
+    end: float
+    radius: float
+    flatten: float
+    omega: float
+    spin: float
+    orbit_scale: float
 
 
-def fracture_markup(mobile, boxes, rng):
-    # Textures are clipped from the pristine project cards themselves, 96-144 pieces.
-    cx,cy=(214,522) if mobile else (514,466)
-    clips=[];pieces=[]
-    for (key,x,y,w,h,*_),card in boxes:
-        nx,ny=(5,4) if mobile else (7,4)
-        for j in range(ny):
-            for i in range(nx):
-                dx=w/nx;dy=h/ny
-                xx=x+i*dx;yy=y+j*dy
-                tag=f'clip-{key}-{i}-{j}'
-                clips.append(f'<clipPath id="{tag}" clipPathUnits="userSpaceOnUse"><rect x="{xx:.2f}" y="{yy:.2f}" width="{dx+.4:.2f}" height="{dy+.4:.2f}"/></clipPath>')
-                pieces.append(fracture_piece(tag,key,xx,yy,dx,dy,cx,cy,rng,i+j*nx,nx*ny))
-    return ''.join(clips), ''.join(pieces)
+class Film:
+    def __init__(self, mobile=False):
+        self.mobile = mobile
+        self.W, self.H = (640, 860) if mobile else (1120, 700)
+        self.cx, self.cy = (320, 426) if mobile else (560, 358)
+        self.unit = .86 if mobile else 1.0
+        self.rng = Random(20261110 + int(mobile))
+        self.pieces = []
+        self.build_profile()
+        self.background = self.make_background()
+        self.stars = self.make_stars()
+        self.intact = self.background.copy()
+        for p in self.pieces:
+            self.intact.alpha_composite(p.sprite, (round(p.x - p.sprite.width/2), round(p.y - p.sprite.height/2)))
+        self.footer = self.make_footer()
+        # Half-resolution radiance is smooth by construction. Crisp text/shards
+        # and the shadow silhouette are composited at the full output size.
+        yy, xx = np.mgrid[0:self.H:2, 0:self.W:2].astype(np.float32)
+        self.X = xx - self.cx
+        self.Y = yy - self.cy
+        a = -.19
+        self.U = self.X * math.cos(a) + self.Y * math.sin(a)
+        self.V = -self.X * math.sin(a) + self.Y * math.cos(a)
+        self.R = np.sqrt(self.X**2 + self.Y**2)
+        self.theta = np.arctan2(self.Y, self.X)
+        self.spark_data = [(self.rng.uniform(0, math.tau), self.rng.uniform(155, 530) * self.unit,
+                            self.rng.uniform(.25, .95), self.rng.uniform(.35, .68),
+                            self.rng.choice([.6, .8, 1.0, 1.4])) for _ in range(110 if not mobile else 76)]
+
+    def add(self, sprite, x, y, kind='text', keep=None):
+        r = self.rng
+        pcx, pcy = x + sprite.width/2, y + sprite.height/2
+        if keep is None:
+            keep = kind == 'text' and r.random() < .50
+        distance = math.hypot(pcx-self.cx, pcy-self.cy)
+        release = 1.6 + distance / self.W * 1.3 + r.uniform(0, .45)
+        radius = r.uniform(170, 260) if self.mobile else r.uniform(195, 440)
+        radius = min(radius, (self.W/2 - 40 - sprite.width*.46)/1.08)
+        self.pieces.append(Piece(sprite, pcx, pcy, kind, keep, r.uniform(0, math.tau),
+            release, release + r.uniform(3.1, 4.6), radius, r.uniform(.85, 1.20) if self.mobile else r.uniform(.37, .68),
+            r.uniform(.30, .55) * (300*self.unit / radius)**.7,
+            r.uniform(-1, 1), r.uniform(.58, .86) if kind == 'text' else r.uniform(.16, .35)))
+
+    def text(self, value, x, y, size, color='paper', face='regular', spacing=0,
+             split=False, keep=None):
+        col = PALETTE.get(color, color)
+        if split:
+            for word in value.split(' '):
+                sprite = label_sprite(word, size, col, face, spacing)
+                self.add(sprite, x, y, keep=keep)
+                x += font(size, face).getlength(word + ' ')
+        else:
+            self.add(label_sprite(value, size, col, face, spacing), x, y, keep=keep)
+            titles = ('Psi', 'Shohin', 'GPU / MoE', 'Frameworks')
+            if value in titles:
+                i=titles.index(value);p=self.pieces[-1]
+                p.phase=i*math.pi/2
+                p.omega=.40
+                p.radius=([175,205,185,190] if self.mobile else [310,360,300,335])[i]
+                p.flatten=1.02 if self.mobile else .68
+
+    def rule(self, x, y, width, color='dim', height=1):
+        col = rgb(PALETTE.get(color, color))
+        # Segments are genuine pieces of the original rule, not filler particles.
+        for i in range(4):
+            lo, hi = round(i*width/4), round((i+1)*width/4)
+            sprite = Image.new('RGBA', (hi-lo, height), col+(150,))
+            self.add(sprite, x+lo, y, 'rule', keep=i == 1)
+
+    def headline(self, x, y, size):
+        whole = label_sprite('SAI', size, PALETTE['paper'], 'bold', -size*.060)
+        # Horizontal shear strips split the actual glyph image. No duplicated
+        # cards, browser clip paths or replacement labels exist in the film.
+        widths = [0, .29, .58, .82, 1.0]
+        rows = [0, .32, .56, .78, 1.0]
+        for j in range(len(rows)-1):
+            for i in range(len(widths)-1):
+                a,b = round(widths[i]*whole.width), round(widths[i+1]*whole.width)
+                c,d = round(rows[j]*whole.height), round(rows[j+1]*whole.height)
+                p = whole.crop((a,c,b,d))
+                if p.getbbox():
+                    self.add(p, x+a,y+c,'headline', keep=(i+j)%5==0)
+
+    def card(self, x, y, w, h, n, title, line1, line2, accent):
+        # Thin open editorial rules instead of UI badges and rounded cards.
+        self.rule(x,y,w,'dim')
+        self.text(n, x, y+18, 10 if not self.mobile else 11, accent, 'mono', spacing=1, keep=False)
+        self.text(title,x,y+47,30 if not self.mobile else 31,'paper','bold',keep=True)
+        self.text(line1,x,y+98,12 if not self.mobile else 14,'muted',split=True)
+        self.text(line2,x,y+119,11 if not self.mobile else 12,'dim',split=True)
+        self.rule(x,y+h,w,'dim')
+        # Two small solid edges are part of the original card structure.
+        self.add(Image.new('RGBA',(2,16),rgb(PALETTE[accent])+(170,)),x+w-2,y+17,'rule',False)
+
+    def build_profile(self):
+        if self.mobile:
+            self.text('SAICHARAN RAMINENI',35,40,12,'muted','mono',spacing=1.35,keep=False)
+            self.text('01',574,41,11,'gold','mono',keep=False)
+            self.rule(35,70,570)
+            self.headline(26,111,197)
+            self.text('I build things to understand them.',36,293,22,'paper',keep=False)
+            self.text('GPU KERNELS  /  SMALL MODELS  /  SYSTEMS',36,335,10,'gold','mono',spacing=.35,keep=False)
+            self.card(36,393,270,158,'01 / AUTOGRAD','Psi','C++ · Metal · CUDA','From scratch. To the metal.','gold')
+            self.card(334,393,270,158,'02 / RESEARCH','Shohin','Models that revise','Experiments + negative results','cold')
+            self.card(36,593,270,158,'03 / COMPUTE','GPU / MoE','Routing + memory','Measure. Optimize. Repeat.','cold')
+            self.card(334,593,270,158,'04 / UPSTREAM','Frameworks','PyTorch · TF · JAX','Numerical + runtime fixes','gold')
+        else:
+            self.text('SAICHARAN RAMINENI',52,35,11,'muted','mono',spacing=1.6,keep=False)
+            self.text('CODE / RESEARCH / SYSTEMS',811,36,10,'gold','mono',spacing=.65,keep=False)
+            self.rule(52,63,1016)
+            self.headline(36,105,250)
+            self.text('I build things',590,153,31,'paper',split=True,keep=False)
+            self.text('to understand them.',590,199,31,'paper',split=True,keep=False)
+            self.text('GPU kernels. Small models.',593,268,13,'muted',split=True)
+            self.text('The systems beneath them.',593,291,13,'muted',split=True)
+            self.card(52,411,238,159,'01 / AUTOGRAD','Psi','C++ · Metal · CUDA','From scratch. To the metal.','gold')
+            self.card(312,411,238,159,'02 / RESEARCH','Shohin','Models that revise','Controls + negative results','cold')
+            self.card(572,411,238,159,'03 / COMPUTE','GPU / MoE','Routing + memory','Measure. Optimize. Repeat.','cold')
+            self.card(832,411,236,159,'04 / UPSTREAM','Frameworks','PyTorch · TF · JAX','Numerical + runtime fixes','gold')
+
+    def make_background(self):
+        yy, xx = np.mgrid[0:self.H, 0:self.W].astype(np.float32)
+        d=((xx-self.cx)/(self.W*.65))**2+((yy-self.cy)/(self.H*.68))**2
+        c=np.empty((self.H,self.W,3),dtype=np.float32)
+        for i,col in enumerate([7,10,15]): c[:,:,i]=col+np.exp(-d*2.8)*[2,3,4][i]
+        return Image.fromarray(c.astype('uint8')).convert('RGBA')
+
+    def make_stars(self):
+        im=Image.new('RGBA',(self.W,self.H))
+        d=ImageDraw.Draw(im)
+        for i in range(130 if not self.mobile else 85):
+            x,y=self.rng.randrange(self.W),self.rng.randrange(80,self.H-70)
+            alpha=self.rng.randint(30,95)
+            rad=.5 if i%7 else 1
+            d.ellipse((x-rad,y-rad,x+rad,y+rad),fill=(150,170,195,alpha))
+        return im
+
+    def make_footer(self):
+        im=Image.new('RGBA',(self.W,self.H))
+        left=label_sprite('S I N G U L A R I T Y',10, '#7b8590','mono')
+        right=label_sprite('SAI / 001',10,'#7b8590','mono')
+        margin=36 if self.mobile else 52
+        im.alpha_composite(left,(margin,self.H-43))
+        im.alpha_composite(right,(self.W-margin-right.width,self.H-43))
+        return im
+
+    def clock(self,t):
+        # Return along the same continuous trajectories. The opening and final
+        # half-second are pixel-identical: no abrupt cut or randomized reset.
+        if t<=11.5:return t
+        if t<=12.5:
+            u=t-11.5
+            return 11.5+u-.5*u*u
+        return 12.0*(1-smoother((t-12.5)/5.0))
+
+    def position(self,p,t):
+        u=clamp((t-p.start)/(p.end-p.start))
+        if u==0:return p.x,p.y,1.0,0.0,1.0,0.0
+        pull=smooth(u)
+        a0=math.atan2(p.y-self.cy,p.x-self.cx)
+        r0=math.hypot(p.x-self.cx,p.y-self.cy)
+        # An accelerating infall blends continuously into Kepler-like orbits.
+        omega=p.omega
+        turn=2.8*smooth(u)*smooth((u-.15)/.85)+omega*(t-p.start)*smooth(u)
+        offset=(p.phase-(a0+2.8-omega*p.start)+math.pi)%math.tau-math.pi
+        a=a0+turn+offset*smooth((u-.50)/.50)
+        target=p.radius if p.keep else 7*self.unit
+        rad=(r0*(1-pull)+target*pull)*(1-.22*math.sin(math.pi*u))
+        flatten=1-(1-p.flatten)*smooth(u)
+        x=rad*math.cos(a)
+        y=rad*math.sin(a)*flatten
+        tilt=-.19*smooth(u)
+        px=self.cx+x*math.cos(tilt)-y*math.sin(tilt)
+        py=self.cy+x*math.sin(tilt)+y*math.cos(tilt)
+        # Perspective breathes naturally as fragments cross the orbital plane.
+        depth=math.sin(a)
+        scale=(1-smooth(u))+p.orbit_scale*smooth(u)
+        scale*=1+.16*depth*smooth(u)
+        if not p.keep:scale*=1-.96*pull
+        # Smooth tilt has no modulo wrap: a 180-degree angle discontinuity
+        # would create a visible jump even in a perfectly timed 30fps movie.
+        rotation=-(math.sin(a)*25+p.spin*10)*smooth(u)
+        if p.kind=='headline':rotation=-(math.degrees(turn)*.65+p.spin*65)*smooth(u)
+        if p.kind=='rule':rotation=-math.degrees(turn)*.8*smooth(u)
+        opacity=1.0
+        if not p.keep:opacity=1-smooth((u-.68)/.32)
+        else:opacity=(.62+.38*(depth+1)/2)*smooth(u)+1-smooth(u)
+        return px,py,max(.015,scale),rotation,opacity,depth
+
+    def piece_sprite(self,p,scale,rotation,opacity):
+        stretch=1+.7*(1-scale) if p.kind=='headline' else 1.0
+        w=max(1,round(p.sprite.width*scale*stretch));h=max(1,round(p.sprite.height*scale/math.sqrt(stretch)))
+        im=p.sprite if (w,h)==p.sprite.size else p.sprite.resize((w,h),Image.Resampling.LANCZOS)
+        if p.kind=='headline' and scale<.98:
+            warm=Image.new('RGBA',im.size,(238,192,131));warm.putalpha(im.getchannel('A'))
+            im=Image.blend(im,warm,min(.42,(1-scale)*.6))
+        elif p.kind=='text' and scale<.98:
+            im=ImageEnhance.Brightness(im).enhance(1+.6*(1-scale))
+        if abs(rotation)>.03:im=im.rotate(rotation,resample=Image.Resampling.BICUBIC,expand=True)
+        if opacity<.999:
+            im=im.copy();im.putalpha(im.getchannel('A').point(lambda a:round(a*opacity)))
+        return im
+
+    def draw_pieces(self,t):
+        back=Image.new('RGBA',(self.W,self.H));front=Image.new('RGBA',(self.W,self.H))
+        for p in self.pieces:
+            x,y,s,a,op,depth=self.position(p,t)
+            if op<.012:continue
+            target=back if depth<0 else front
+            # Short exposure trails only on fast actual shards. These are baked
+            # into the frame, never live SVG filters or extra browser nodes.
+            past=self.position(p,max(0,t-.045))
+            speed=math.hypot(x-past[0],y-past[1])
+            if speed>4 and s>.04:
+                for lag,alpha in ((.055,.14),(.028,.23)):
+                    tx,ty,ts,ta,to,_=self.position(p,max(0,t-lag))
+                    ghost=self.piece_sprite(p,ts,ta,to*alpha)
+                    target.alpha_composite(ghost,(round(tx-ghost.width/2),round(ty-ghost.height/2)))
+            sprite=self.piece_sprite(p,s,a,op)
+            target.alpha_composite(sprite,(round(x-sprite.width/2),round(y-sprite.height/2)))
+        return back,front
+
+    def field(self,t,mass):
+        if mass<.005:return Image.new('RGBA',(self.W,self.H))
+        radius=84*self.unit*mass
+        U,V,R=self.U,self.V,self.R
+        theta=self.theta
+        # Brightness and color are integrated into a single immutable image.
+        # Disk streaks advect coherently; there is no frame-random grain.
+        rho=np.sqrt(U*U+(V/.245)**2)+.01
+        ang=np.arctan2(V/.245,U)
+        disk=np.exp(-((rho-radius*1.9)/(radius*.90+1))**2)
+        disk*=np.clip((rho-radius*1.12)/(radius*.35+1),0,1)
+        texture=(.55+.20*np.sin(rho*.14-ang*4+t*1.9)
+                 +.14*np.sin(rho*.36+ang*9-t*2.8)+.08*np.sin(rho*.71-ang*13+t))
+        disk*=np.clip(texture,.10,1.0)*(1+.5*np.cos(ang+.5))
+        ring=np.exp(-((R-radius)/(1.1+mass*.9))**2)
+        subring=np.exp(-((R-radius*1.07)/(1.5+mass*1.1))**2)*.22
+        ringlight=(ring+subring)*(.72+.28*np.cos(theta+.65))
+        halo=np.exp(-((R-radius)/(radius*.30+1))**2)*.09
+        wide=np.exp(-((R-radius)/(radius*1.4+1))**2)*.018
+        # A long anamorphic flare grows out of the disk, not the whole page.
+        flare=np.exp(-np.abs(U)/(radius*4+1))*np.exp(-(V/(.8+mass*.8))**2)*.22
+        heat=np.clip((np.cos(ang+.7)+1)*.5,0,1)
+        radiance=np.zeros((*R.shape,3),dtype=np.float32)
+        warm=(1.0,.48,.19);cool=(.70,.83,1.0)
+        for c in range(3):
+            diskcolor=warm[c]*(.75+.25*heat)+cool[c]*.16*(1-heat)
+            radiance[:,:,c]=disk*diskcolor*.83+(ringlight*1.05+halo)*[1,.80,.52][c]+wide*[.42,.53,.78][c]+flare*[1,.75,.43][c]
+        # Nothing can shine from inside the shadow. Bloom is applied afterwards.
+        radiance[R<radius*.935]=0
+        radiance*=smooth(mass)*mass
+        linear=np.clip(radiance*240,0,255).astype('uint8')
+        source=Image.fromarray(linear).resize((self.W,self.H),Image.Resampling.BILINEAR)
+        tight=source.filter(ImageFilter.GaussianBlur(3*self.unit))
+        wideglow=source.filter(ImageFilter.GaussianBlur(15*self.unit))
+        source=ImageChops.add(source,ImageEnhance.Brightness(tight).enhance(.48))
+        source=ImageChops.add(source,ImageEnhance.Brightness(wideglow).enhance(.75))
+        return source
+
+    def sparks(self,t,mass):
+        im=Image.new('RGBA',(self.W,self.H));d=ImageDraw.Draw(im)
+        if mass<.02:return im
+        for i,(phase,rad,omega,flat,weight) in enumerate(self.spark_data):
+            points=[]
+            for j in range(8):
+                a=phase+(t-j*.034)*omega
+                rr=rad*(.97+.03*math.cos(a*2+phase))
+                x=rr*math.cos(a);y=rr*math.sin(a)*flat
+                points.append((self.cx+x*.982+y*.189,self.cy-x*.189+y*.982))
+            alpha=round((38+65*(math.sin(phase)+1)/2)*mass)
+            color=(216,173,122) if i%3 else (155,188,217)
+            for j in range(7):
+                d.line([points[j],points[j+1]],fill=color+(round(alpha*(1-j/8)),),width=1)
+            if i%5==0:
+                x,y=points[0]
+                d.ellipse((x-1,y-1,x+1,y+1),fill=(246,223,191,round(alpha*1.5)))
+        return im
+
+    def render(self,time):
+        t=self.clock(time)
+        mass=smooth((t-1.2)/3.2)
+        if t<1.4:
+            result=self.intact.copy();result.alpha_composite(self.footer)
+            return result.convert('RGB')
+        base=self.background.copy()
+        star=self.stars.copy();star.putalpha(star.getchannel('A').point(lambda a:round(a*mass)))
+        base.alpha_composite(star)
+        back,front=self.draw_pieces(t)
+        base.alpha_composite(back)
+        base.alpha_composite(self.sparks(t,mass))
+        radius=84*self.unit*mass
+        # Occlude the rear layer with a full-resolution event-horizon silhouette.
+        d=ImageDraw.Draw(base)
+        d.ellipse((self.cx-radius*.97,self.cy-radius*.97,self.cx+radius*.97,self.cy+radius*.97),fill=(1,2,4,255))
+        glow=self.field(t,mass)
+        if glow.mode=='RGB':base=ImageChops.add(base.convert('RGB'),glow).convert('RGBA')
+        ImageDraw.Draw(front).ellipse((self.cx-radius*.94,self.cy-radius*.94,self.cx+radius*.94,self.cy+radius*.94),fill=(0,0,0,0))
+        base.alpha_composite(front)
+        # Modest camera push; all profile geometry and lighting share the camera.
+        zoom=1+.07*mass+.01*smooth((t-5.5)/4)
+        if zoom>1.0001:
+            w,h=round(self.W*zoom),round(self.H*zoom)
+            base=base.resize((w,h),Image.Resampling.BICUBIC)
+            dx,dy=(w-self.W)//2,(h-self.H)//2
+            base=base.crop((dx,dy,dx+self.W,dy+self.H))
+        base.alpha_composite(self.footer)
+        return base.convert('RGB')
 
 
-def header_shatter(mobile, rng):
-    # Headlines are also chopped into offset text strips, so it's visibly the
-    # README heading being disassembled rather than unrelated floating blocks.
-    cx,cy=(214,522) if mobile else (514,466)
-    x,y,w,h=(15,67,335,115) if mobile else (36,86,390,148)
-    strips=[];defs=[]
-    n=13
-    for i in range(n):
-        xx=x;yy=y+i*(h/n);ww=w;hh=h/n+.35
-        tag=f'headline-{i}'
-        defs.append(f'<clipPath id="{tag}" clipPathUnits="userSpaceOnUse"><rect x="{xx}" y="{yy:.2f}" width="{ww}" height="{hh:.2f}"/></clipPath>')
-        pcx=xx+w/2;pcy=yy+hh/2
-        dx=cx-pcx;dy=cy-pcy
-        perp=(-dy/(hypot(dx,dy)+1),dx/(hypot(dx,dy)+1))
-        sway=(i-6)*6
-        path=f'M0 0 C{dx*.2+perp[0]*sway:.1f} {dy*.2+perp[1]*sway:.1f},{dx*.7+perp[0]*sway*2:.1f} {dy*.7+perp[1]*sway*2:.1f},{dx:.1f} {dy:.1f}'
-        begin=3.30+i*.065;end=7.3+i*.09
-        k=f'0;{(begin-.04)/DURATION:.5f};{begin/DURATION:.5f};{end/DURATION:.5f};{(end+.28)/DURATION:.5f};1'
-        strips.append(f'''<g opacity="0">
-         <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{k}" dur="{DURATION}s" repeatCount="indefinite"/>
-         <animateMotion path="{path}" keyPoints="0;0;0;1;1;1" keyTimes="{k}" dur="{DURATION}s" calcMode="linear" repeatCount="indefinite"/>
-         <g transform="translate({pcx:.1f} {pcy:.1f})"><g><animateTransform attributeName="transform" type="rotate" values="0;0;0;{(i-6)*25:.1f};0;0" keyTimes="{k}" dur="{DURATION}s" repeatCount="indefinite"/>
-         <g transform="translate({-pcx:.1f} {-pcy:.1f})" clip-path="url(#{tag})"><use href="#profile-header"/></g>
-         </g></g></g>''')
-    return ''.join(defs),''.join(strips)
+_WORKER_FILM=None
+
+def init_worker(mobile):
+    global _WORKER_FILM
+    _WORKER_FILM=Film(mobile)
 
 
-def orbital_words(mobile,rng):
-    cx,cy=(214,522) if mobile else (514,466)
-    orbits=([(174,275,39),(146,219,29),(102,157,20)] if mobile else [(404,205,46),(323,157,33),(234,112,23),(157,69,14)])
-    words=[
-       'auto','grad','CUDA','CUDA::','GPU','tensor','kernel','MoE','expert','routing',
-       'scratch','PyTorch','Triton','Psi','Shohin','JAX','ML','C++','Metal',
-       'research','GPU / CPU','ABI','backward()','bf16','SGLang','checks','weights',
-       'systems','DFT','OC20','TensorFlow','source','test','fail','rebuild','//',
-       '{}','[ ]','->','0x7F','matrix','memory','ops','fork','push',
-       'small models','evidence','speedup?','latency','dispatch'
-    ]
-    parts=[]
-    for i,word in enumerate(words):
-        rx,ry,speed=orbits[i%len(orbits)]
-        # Negative begin shifts each token to a distinct location on its orbit.
-        offset=-(i*3.73+float(i%7)*.51)
-        initial=8.2+(i%9)*.18
-        end=30.35
-        col=COLORS[i%len(COLORS)]
-        fs=(9.6 if mobile else 11.7)
-        if len(word)>11:fs-=1
-        span=max(30,len(word)*fs*.63+16)
-        rot=f'<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="{speed}s" repeatCount="indefinite"/>'
-        path=(f'M {cx-rx:.1f} {cy:.1f} '
-              f'a {rx:.1f} {ry:.1f} 0 1 0 {rx*2:.1f} 0 '
-              f'a {rx:.1f} {ry:.1f} 0 1 0 {-rx*2:.1f} 0')
-        # Text stays horizontal while moving on the orbit; no unreadable spinning badges.
-        parts.append(f'''<g class="orbit-word" opacity="0">{animate_opacity(initial,end,.6)}
-        <animateMotion path="{path}" begin="{offset:.2f}s" dur="{speed}s" rotate="0" repeatCount="indefinite"/>
-        <rect x="{-span/2:.1f}" y="-11" width="{span:.1f}" height="22" rx="4" fill="#101827" stroke="{col}" stroke-opacity=".52"/>
-        <text text-anchor="middle" y="4" fill="{col}" font-size="{fs}" font-weight="760" letter-spacing=".55">{e(word)}</text>
-        </g>''')
-    return ''.join(parts)
+def render_frame(args):
+    i,fps,directory=args
+    path=Path(directory)/f'{i:04d}.png'
+    _WORKER_FILM.render(i/fps).save(path,compress_level=1)
+    return i
 
 
-def event_field(mobile,rng):
-    cx,cy=(214,522) if mobile else (514,466)
-    # The shadow uses graphic-design rules rather than pretending to be the
-    # actual physical Gargantua WebGL lensing solver.
-    out=[];add=out.append
-    add(f'''<g id="event-field" opacity="0">{animate_opacity(2.85,30.5,.6)}
-      <circle cx="{cx}" cy="{cy}" r="{112 if mobile else 155}" fill="url(#outer-well)" opacity=".74"/>
-      <ellipse cx="{cx}" cy="{cy}" rx="{95 if mobile else 147}" ry="{33 if mobile else 51}" fill="none" stroke="url(#plasma)" stroke-width="20" opacity=".40" filter="url(#glow)"/>
-      <ellipse cx="{cx}" cy="{cy}" rx="{102 if mobile else 152}" ry="{38 if mobile else 53}" fill="none" stroke="url(#plasma)" stroke-width="8" opacity=".90"/>
-      <g opacity=".72"><animateTransform attributeName="transform" type="rotate" values="0 {cx} {cy};11 {cx} {cy};0 {cx} {cy}" dur="12s" repeatCount="indefinite"/>
-       <ellipse cx="{cx}" cy="{cy}" rx="{58 if mobile else 82}" ry="{83 if mobile else 115}" fill="none" stroke="url(#plasma)" stroke-width="5" opacity=".40"/>
-      </g>
-      <circle cx="{cx}" cy="{cy}" r="{65 if mobile else 85}" fill="#000003" stroke="#FFE0BB" stroke-opacity=".54" stroke-width="1.1"/>
-      <circle cx="{cx}" cy="{cy}" r="{53 if mobile else 70}" fill="url(#inner-well)"/>
-      <ellipse cx="{cx}" cy="{cy+13}" rx="{104 if mobile else 170}" ry="{16 if mobile else 24}" fill="none" stroke="url(#plasma)" stroke-width="4" opacity=".55"/>
-    </g>''')
-    # Multiple curling gravitational field lines, enough to imply warped space.
-    add(f'<g class="lens-field" opacity="0">{animate_opacity(3.0,30.2,.75)}')
-    for i in range(24 if mobile else 32):
-        phase=i*2*pi/(24 if mobile else 32)
-        rad1=(105 if mobile else 155)+rng.uniform(-20,20)
-        rad2=(187 if mobile else 290)+rng.uniform(-22,22)
-        x1=cx+rad1*cos(phase);y1=cy+rad1*sin(phase)*(.78 if mobile else .65)
-        x2=cx+rad2*cos(phase+.34);y2=cy+rad2*sin(phase+.34)*(.88 if mobile else .68)
-        xm=cx+((rad1+rad2)/2)*cos(phase+.54)
-        ym=cy+((rad1+rad2)/2)*sin(phase+.54)*(.83 if mobile else .68)
-        add(f'<path d="M{x1:.1f} {y1:.1f} Q{xm:.1f} {ym:.1f},{x2:.1f} {y2:.1f}" fill="none" stroke="{COLORS[i%len(COLORS)]}" stroke-width="{1.4 if i%5 else 2.2}" opacity="{.12 + rng.random()*.19:.2f}"/>')
-    add('</g>')
-    # Accretion sparks drifting into the singularity, with staggered phases.
-    add(f'<g opacity="0">{animate_opacity(3.5,30.4,.6)}')
-    for i in range(58 if mobile else 80):
-        a=rng.random()*2*pi
-        radius=rng.uniform(230,400) if not mobile else rng.uniform(175,300)
-        x=cx+cos(a)*radius; y=cy+sin(a)*radius*(.75 if not mobile else 1.05)
-        r=rng.choice([.7,.9,1.3,2.1])
-        ex=cx+cos(a+2)*rng.uniform(20,58); ey=cy+sin(a+2)*rng.uniform(12,44)
-        cpx=cx+cos(a+.8)*radius*.65; cpy=cy+sin(a+.8)*radius*.35
-        path=f'M{x:.1f} {y:.1f} Q{cpx:.1f} {cpy:.1f} {ex:.1f} {ey:.1f}'
-        add(f'<circle r="{r}" fill="{COLORS[i%len(COLORS)]}" opacity="{rng.uniform(.34,.8):.2f}"><animateMotion path="{path}" dur="{rng.uniform(3.1,8.2):.2f}s" begin="{-rng.uniform(.0,7.8):.2f}s" repeatCount="indefinite"/></circle>')
-    add('</g>')
-    return ''.join(out)
+def storyboard(film,output):
+    times=[0,2.8,4.4,6.0,8.5,11.7,14.5,17.5]
+    thumbw=560 if not film.mobile else 320
+    thumbh=round(film.H*thumbw/film.W)
+    cols=2 if not film.mobile else 4
+    rows=math.ceil(len(times)/cols)
+    sheet=Image.new('RGB',(cols*thumbw,rows*(thumbh+28)),(13,17,23))
+    d=ImageDraw.Draw(sheet)
+    for i,t in enumerate(times):
+        frame=film.render(t).resize((thumbw,thumbh),Image.Resampling.LANCZOS)
+        x=(i%cols)*thumbw;y=(i//cols)*(thumbh+28)
+        sheet.paste(frame,(x,y))
+        d.text((x+12,y+thumbh+6),f'{t:04.1f} s',font=font(12,'mono'),fill='#c6cbd2')
+    sheet.save(output)
 
 
-def stars(mobile,rng):
-    W,H=(432,920) if mobile else (1024,720)
-    out=[]
-    for _ in range(105 if mobile else 170):
-        x=rng.randint(0,W);y=rng.randint(0,H);r=rng.choice([.38,.54,.65,.9,1.2]);op=rng.uniform(.1,.45)
-        out.append(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#B4BFE3" opacity="{op:.2f}"/>')
-    return ''.join(out)
+def encode(framesdir,output,fps,quality):
+    files=sorted(Path(framesdir).glob('*.png'))
+    # Pillow retains loaded source frames until encoding completes. Allow about
+    # 2 GiB for desktop encoding; PNGs are an ignored cache, not repo assets.
+    # Frame durations sum to exactly 18 s.
+    frames=[Image.open(p) for p in files]
+    durations=[round((i+1)*1000/fps)-round(i*1000/fps) for i in range(len(frames))]
+    frames[0].save(output,format='WEBP',save_all=True,append_images=frames[1:],
+                   duration=durations,loop=0,quality=quality,method=4,
+                   lossless=False,minimize_size=True,allow_mixed=False)
+    for frame in frames:frame.close()
 
 
-def scriptless_svg(mobile: bool):
-    rng=Random(25095 if mobile else 180921)
-    W,H=(432,920) if mobile else (1024,720)
-    cx,cy=(214,522) if mobile else (514,466)
-    boxes=card_setup(mobile)
-    carddefs=''.join(markup for _,markup in boxes)
-    panel_frags,frags=fracture_markup(mobile,boxes,rng)
-    header_clips,head_shards=header_shatter(mobile,rng)
-    pristine=f'''<g class="pristine-profile"><use href="#profile-header"/>'''+''.join(f'<use href="#card-{box[0]}"/>' for box,_ in boxes)+'</g>'
-    # Fallback remains unmoving even on systems that ask us to reduce motion.
-    svg=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-labelledby="title desc">
-<title id="title">SAI — the GitHub singularity</title>
-<desc id="desc">An animated GitHub profile collapses into a central singularity: real project cards and a giant SAI headline shred into fragments, then orbit with words from my work in kernels, CUDA, model revision, GPU serving, and open source.</desc>
-<defs>
-<style>
-text{{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}}
-.reduced-only{{display:none}}
-@media(prefers-reduced-motion:reduce){{.motion-only{{display:none}} .reduced-only{{display:inline}}}}
-</style>
-<linearGradient id="plasma" x1="0" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#A7C0FF"/><stop offset=".18" stop-color="#6D85FF"/><stop offset=".40" stop-color="#E0E9FF"/><stop offset=".64" stop-color="#F2B08B"/><stop offset=".81" stop-color="#FF674A"/><stop offset="1" stop-color="#FF674A" stop-opacity="0"/></linearGradient>
-<radialGradient id="outer-well"><stop offset="0" stop-color="#525DD8" stop-opacity=".65"/><stop offset=".58" stop-color="#4E5584" stop-opacity=".13"/><stop offset="1" stop-color="#0B101C" stop-opacity="0"/></radialGradient>
-<radialGradient id="inner-well"><stop offset="0" stop-color="#000000"/><stop offset=".7" stop-color="#000000"/><stop offset="1" stop-color="#080B14"/></radialGradient>
-<filter id="glow" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="8"/></filter>
-{carddefs}
-{profile_header(mobile)}
-{panel_frags}{header_clips}
-</defs>
-<rect width="100%" height="100%" fill="#080B13"/>
-<g opacity=".75">{stars(mobile,rng)}</g>
-<!-- an intact, finished GitHub-profile composition before the collapse -->
-<g class="reduced-only">{pristine}</g>
-<g class="motion-only">
-  <g opacity="1"><animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;.105;.150;.918;.973;1" dur="{DURATION}s" repeatCount="indefinite"/>
-   {pristine}
-  </g>
-  <g id="shredding">{frags}{head_shards}</g>
-  {event_field(mobile,rng)}
-  <g id="orbiting-remnants">{orbital_words(mobile,rng)}</g>
-  <g opacity="0">{animate_opacity(4.7,30.0,.7)}
-    <text x="{18 if mobile else 50}" y="{868 if mobile else 669}" fill="#FCB394" font-size="{10 if mobile else 12}" font-weight="750" letter-spacing="2">PROFILE INTEGRITY // LOST</text>
-    <text x="{18 if mobile else 50}" y="{891 if mobile else 691}" fill="#8C9DB8" font-size="{10 if mobile else 12}" letter-spacing="1.0">THE WORK DIDN'T DISAPPEAR. IT CHANGED ORBIT.</text>
-  </g>
-</g>
-<text x="{W-17}" y="{H-16}" text-anchor="end" fill="#67758F" font-size="{9 if mobile else 10}" letter-spacing="1.2">SINGULARITY / GITHUB NATIVE SVG</text>
-</svg>\n'''
-    return svg
+def build_singularity(variant='all',preview=False,output_dir=ASSETS,workers=4,quality=64):
+    output_dir=Path(output_dir);output_dir.mkdir(parents=True,exist_ok=True)
+    cache=ROOT/'previews';cache.mkdir(exist_ok=True)
+    variants=[False,True] if variant=='all' else [variant=='mobile']
+    metadata={}
+    for mobile in variants:
+        name='singularity-mobile' if mobile else 'singularity'
+        film=Film(mobile)
+        film.render(0).save(output_dir/f'{name}-poster.png',optimize=True)
+        storyboard(film,cache/f'{name}-storyboard.png')
+        print(f'{name}: {len(film.pieces)} actual profile pieces, {film.W}x{film.H}',flush=True)
+        if preview:continue
+        source_hash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()[:10]
+        framesdir=cache/f'{name}-frames-{source_hash}';framesdir.mkdir(exist_ok=True)
+        count=DURATION*FPS
+        jobs=[(i,FPS,str(framesdir)) for i in range(count)]
+        with ProcessPoolExecutor(max_workers=workers,initializer=init_worker,initargs=(mobile,)) as pool:
+            for i in pool.map(render_frame,jobs,chunksize=6):
+                if i%90==0:print(f'{name}: rendered {i}/{count}',flush=True)
+        print(f'{name}: encoding {count} source frames',flush=True)
+        dest=output_dir/f'{name}.webp'
+        encode(framesdir,dest,FPS,quality)
+        metadata[name]={'dimensions':[film.W,film.H],'fps':FPS,'source_frames':count,
+                        'duration_ms':DURATION*1000,'bytes':dest.stat().st_size,
+                        'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}
+        print(f'{name}: {dest.stat().st_size:,} bytes',flush=True)
+    if not preview:
+        (cache/'render-metadata.json').write_text(json.dumps(metadata,indent=2)+'\n')
 
 
-def build_singularity():
-    ASSETS.mkdir(parents=True, exist_ok=True)
-    for mobile,name in ((False,'singularity.svg'),(True,'singularity-mobile.svg')):
-        content=scriptless_svg(mobile)
-        (ASSETS/name).write_text(content,encoding='utf-8')
-        print(f'{name}: {len(content.encode()):,} bytes')
-
-
-if __name__ == '__main__':
-    build_singularity()
+if __name__=='__main__':
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--variant',choices=['all','desktop','mobile'],default='all')
+    ap.add_argument('--preview',action='store_true',help='Render posters and storyboard only')
+    ap.add_argument('--output-dir',type=Path,default=ASSETS)
+    ap.add_argument('--workers',type=int,default=min(4,os.cpu_count() or 1))
+    ap.add_argument('--quality',type=int,default=64)
+    args=ap.parse_args()
+    build_singularity(args.variant,args.preview,args.output_dir,args.workers,args.quality)
