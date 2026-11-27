@@ -197,6 +197,32 @@ def render(path: Path, trace: Trace, config: dict, *, mobile: bool) -> bool:
     return True
 
 
+def render_activity_strip(path: Path, trace: Trace, *, mobile: bool) -> bool:
+    """Render the small visible public-activity summary from the same verified trace."""
+    tree = ET.parse(path)
+    root = tree.getroot()
+    find_id(root, "desc").text = (
+        f"Last captured public change: {trace.repository}: {trace.message}. "
+        f"Observed {observed_date(trace.observed_at)}. Periodic snapshot, not real-time telemetry."
+    )
+    find_id(root, "observed-date").text = observed_date(trace.observed_at)
+    find_id(root, "repository").text = clip(trace.repository, 22 if mobile else 16)
+
+    commit = find_id(root, "commit")
+    if mobile:
+        set_lines(commit, wrap(trace.message, 38, 2), "20", 20)
+    else:
+        commit.text = clip(trace.message, 49)
+
+    ET.indent(tree, space="  ")
+    content = ET.tostring(root, encoding="unicode") + "\n"
+    current = path.read_text(encoding="utf-8")
+    if current == content:
+        return False
+    path.write_text(content, encoding="utf-8")
+    return True
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--user", default="GodlyDonuts")
@@ -218,6 +244,11 @@ def main() -> int:
         for name, mobile in (("now.svg", False), ("now-mobile.svg", True))
         if render(args.output / name, trace, config, mobile=mobile)
     ]
+    changed.extend(
+        name
+        for name, mobile in (("activity-strip.svg", False), ("activity-strip-mobile.svg", True))
+        if render_activity_strip(args.output / name, trace, mobile=mobile)
+    )
     print("updated: " + ", ".join(changed) if changed else "unchanged")
     return 0
 

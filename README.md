@@ -1,5 +1,6 @@
 <!-- SVG artwork and this README are maintained by scripts/build_profile_art.py. -->
 <p align="center">
+  <a href="https://saicharanramineni.com/" title="Open the interactive black-hole portfolio">
   <picture>
     <source media="(max-width: 760px) and (prefers-color-scheme: dark)" srcset="assets/hero-dark-mobile.svg" />
     <source media="(max-width: 760px) and (prefers-color-scheme: light)" srcset="assets/hero-light-mobile.svg" />
@@ -7,12 +8,50 @@
     <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg" />
     <img src="assets/hero-light.svg" width="100%" alt="Sai — Saicharan Ramineni. Computer Science at UCF, Orlando." />
   </picture>
+  </a>
 </p>
 
 <picture>
     <source media="(max-width: 760px)" srcset="assets/profile-intro-mobile.svg" />
     <img src="assets/profile-intro.svg" width="100%" alt="I work through papers and framework source by building and testing implementations. GPU kernels, small models, and the runtimes beneath them." />
   </picture>
+
+<a href="https://github.com/GodlyDonuts?tab=repositories&amp;sort=updated"><picture>
+    <source media="(max-width: 760px)" srcset="assets/activity-strip-mobile.svg" />
+    <img src="assets/activity-strip.svg" width="100%" alt="Latest public change from a periodically refreshed GitHub snapshot." />
+  </picture></a>
+
+## inside the experiments
+
+I learn by rebuilding things, testing the assumptions, and seeing where they break. Three problems I keep coming back to:
+
+<picture>
+    <source media="(max-width: 760px)" srcset="assets/experiment-console-mobile.svg" />
+    <img src="assets/experiment-console.svg" width="100%" alt="An animated research console: a backward gradient, a model revising a draft, and tokens routing to experts. Schematic diagrams, not benchmark results." />
+  </picture>
+
+<details>
+<summary><strong>01 / What does a backward pass actually do?</strong></summary>
+
+[Psi](https://github.com/GodlyDonuts/psi) is my language-model training stack: custom autograd, gradient checks, and Metal/CUDA kernels. I wanted to understand the mechanics, not just call the API.
+
+</details>
+
+<details>
+<summary><strong>02 / Can a small model learn to revise?</strong></summary>
+
+[Shohin](https://github.com/GodlyDonuts/shohin-ettr) tests revision as part of the model's behavior. Experiments, controls, and negative results matter more to me than a polished demo.
+
+</details>
+
+<details>
+<summary><strong>03 / Where does MoE inference waste time?</strong></summary>
+
+I've been studying expert routing, queueing, and memory movement in GPU inference. The animation above is an illustration of the system, **not a benchmark or a claimed speedup**. This is an active area of investigation.
+
+</details>
+
+*Each animation is schematic. For reproducible claims, follow the project and upstream source links below.*
 
 <a href="https://saicharanramineni.com/projects"><picture>
     <source media="(max-width: 760px)" srcset="assets/heading-work-mobile.svg" />
